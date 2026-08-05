@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary-yellow: #F5A623;
+    --primary-yellow-bright: #FFB627;
+    --bg-dark: #0E0E0E;
+    --card-dark: #1A1A1A;
+    --border-muted: rgba(255, 255, 255, 0.15);
+  }
+
+  body {
+    font-family: 'Noto Sans Bengali', sans-serif;
+    background-color: var(--bg-dark);
+    color: #FFFFFF;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+  }
+}
+
+/* Custom Utilities & Animations */
+.font-heading {
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+.font-bengali {
+  font-family: 'Noto Sans Bengali', sans-serif;
+}
+
+.bg-primary-yellow {
+  background-color: #F5A623;
+}
+
+.text-primary-yellow {
+  color: #F5A623;
+}
+
+.border-primary-yellow {
+  border-color: #F5A623;
+}
+
+.glow-yellow {
+  box-shadow: 0 0 25px rgba(245, 166, 35, 0.3);
+}
+
+.glass-nav {
+  background-color: rgba(14, 14, 14, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0E0E0E;
+}
+::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F5A623;
+}

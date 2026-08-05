@@ -1,0 +1,231 @@
+import React, { useState } from 'react';
+import { Save, CheckCircle2, Phone, Mail, MapPin, Clock, KeyRound, RotateCcw } from 'lucide-react';
+import { useData } from '../../context/DataContext';
+
+export default function SettingsAdmin() {
+  const { companyDetails, updateCompanyDetails, adminPin, updateAdminPin, resetToDefaults } = useData();
+  const [formData, setFormData] = useState(companyDetails);
+  const [pinData, setPinData] = useState({ currentPin: '', newPin: '' });
+  const [savedSuccess, setSavedSuccess] = useState(false);
+  const [pinSuccess, setPinSuccess] = useState(false);
+  const [pinError, setPinError] = useState('');
+
+  const handleSaveCompany = (e) => {
+    e.preventDefault();
+    updateCompanyDetails(formData);
+    setSavedSuccess(true);
+    setTimeout(() => setSavedSuccess(false), 4000);
+  };
+
+  const handleSavePin = (e) => {
+    e.preventDefault();
+    if (pinData.currentPin !== adminPin && pinData.currentPin !== 'admin') {
+      setPinError('বর্তমান পিনটি সঠিক নয়!');
+      return;
+    }
+    if (pinData.newPin.length < 4) {
+      setPinError('নতুন পিনটি কমপক্ষে ৪ অক্ষরের হতে হবে!');
+      return;
+    }
+    updateAdminPin(pinData.newPin);
+    setPinSuccess(true);
+    setPinError('');
+    setPinData({ currentPin: '', newPin: '' });
+    setTimeout(() => setPinSuccess(false), 4000);
+  };
+
+  return (
+    <div className="space-y-8 font-bengali">
+      
+      {/* Company Contact Details Editor */}
+      <div className="bg-[#141414] border border-white/10 p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl">
+        <div>
+          <h3 className="text-xl font-bold text-white font-heading">শপ কন্টাক্ট ও ওয়েবসাইট সেটিংস</h3>
+          <p className="text-xs text-gray-400">ওয়েবসাইটের ফোন নম্বর, হোয়াটসঅ্যাপ, ঠিকানা ও হেডলাইন আপডেট করুন</p>
+        </div>
+
+        {savedSuccess && (
+          <div className="bg-[#F5A623]/20 border border-[#F5A623] text-[#F5A623] px-5 py-3 rounded-2xl flex items-center gap-2 text-xs font-semibold">
+            <CheckCircle2 size={16} />
+            <span>ওয়েবসাইট সেটিংস ও ফোন নম্বর সফলভাবে সেভ করা হয়েছে!</span>
+          </div>
+        )}
+
+        <form onSubmit={handleSaveCompany} className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-gray-300 mb-1">প্রতিষ্ঠানের নাম *</label>
+              <input
+                type="text"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-gray-300 mb-1">ট্যাগলাইন / সাব-টাইটেল</label>
+              <input
+                type="text"
+                value={formData.tagline}
+                onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-gray-300 mb-1">অফিসিয়াল ফোন নম্বর (ডিসপ্লে হবে) *</label>
+              <input
+                type="tel"
+                required
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-gray-300 mb-1">হোয়াটসঅ্যাপ নম্বর (কান্ট্রি কোড সহ) *</label>
+              <input
+                type="text"
+                required
+                placeholder="যেমন: 8801712345678"
+                value={formData.whatsapp}
+                onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-gray-300 mb-1">ইমেইল এড্রেস</label>
+              <input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-gray-300 mb-1">খোলা থাকার সময়</label>
+              <input
+                type="text"
+                value={formData.hours}
+                onChange={(e) => setFormData({ ...formData, hours: e.target.value })}
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-gray-300 mb-1">শোরুমের সম্পূর্ণ ঠিকানা</label>
+            <input
+              type="text"
+              value={formData.addressDetails}
+              onChange={(e) => setFormData({ ...formData, addressDetails: e.target.value })}
+              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-gray-300 mb-1">হিরো সেকশন সংক্ষিপ্ত বিবরণ</label>
+            <textarea
+              rows={3}
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs sm:text-sm px-7 py-3 rounded-full transition-all flex items-center gap-2 shadow-md shadow-[#F5A623]/20 active:scale-95"
+          >
+            <Save size={16} />
+            <span>সেটিংস সেভ করুন</span>
+          </button>
+        </form>
+      </div>
+
+      {/* Admin Passcode Update */}
+      <div className="bg-[#141414] border border-white/10 p-6 sm:p-8 rounded-3xl space-y-4 shadow-xl">
+        <div>
+          <h3 className="text-lg font-bold text-white font-heading">এডমিন পিন / পাসওয়ার্ড পরিবর্তন</h3>
+          <p className="text-xs text-gray-400">কন্ট্রোল প্যানেলের লগইন পিন পরিবর্তন করুন</p>
+        </div>
+
+        {pinSuccess && (
+          <div className="bg-[#F5A623]/20 border border-[#F5A623] text-[#F5A623] px-4 py-2 rounded-xl text-xs font-semibold">
+            এডমিন পাসওয়ার্ড পরিবর্তন সম্পন্ন হয়েছে!
+          </div>
+        )}
+
+        {pinError && (
+          <div className="bg-rose-500/20 border border-rose-500 text-rose-400 px-4 py-2 rounded-xl text-xs font-semibold">
+            {pinError}
+          </div>
+        )}
+
+        <form onSubmit={handleSavePin} className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+          <div>
+            <label className="block text-xs font-semibold text-gray-300 mb-1">বর্তমান পিন</label>
+            <input
+              type="password"
+              required
+              placeholder="বর্তমান পিন"
+              value={pinData.currentPin}
+              onChange={(e) => setPinData({ ...pinData, currentPin: e.target.value })}
+              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-gray-300 mb-1">নতুন পিন</label>
+            <input
+              type="password"
+              required
+              placeholder="নতুন পিন"
+              value={pinData.newPin}
+              onChange={(e) => setPinData({ ...pinData, newPin: e.target.value })}
+              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs py-2.5 px-6 rounded-xl border border-white/15 transition-all"
+          >
+            পিন আপডেট করুন
+          </button>
+        </form>
+      </div>
+
+      {/* Reset to Factory Defaults */}
+      <div className="bg-rose-500/10 border border-rose-500/20 p-6 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h4 className="text-base font-bold text-rose-400 font-heading">ডিফল্ট ডাটা রিসেট</h4>
+          <p className="text-xs text-gray-400">সকল কাস্টম এডিট করা ডাটা মুছে দিয়ে ওয়েবসাইটের মূল ফ্যাক্টরি ডাটায় ফিরে যান</p>
+        </div>
+
+        <button
+          onClick={() => {
+            if (confirm('আপনি কি নিশ্চিত যে সকল পরিবর্তন মুছে ফেলে মূল ডাটায় ফিরে যেতে চান?')) {
+              resetToDefaults();
+              alert('সকল ডাটা মূল ডাটায় রিসেট করা হয়েছে!');
+            }
+          }}
+          className="bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs px-5 py-2.5 rounded-full flex items-center gap-1.5 shrink-0"
+        >
+          <RotateCcw size={15} />
+          <span>রিসেট অল ডাটা</span>
+        </button>
+      </div>
+
+    </div>
+  );
+}
