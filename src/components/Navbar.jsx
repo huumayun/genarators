@@ -78,7 +78,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenContact, onOpenA
         <div className="flex items-center gap-3">
           <button
             onClick={onOpenContact}
-            className="hidden sm:inline-flex items-center gap-2 bg-[#F5A623] hover:bg-[#FFB627] text-black font-semibold text-sm px-5 py-2.2 rounded-full transition-all duration-200 shadow-md shadow-[#F5A623]/20 hover:scale-[1.03] active:scale-95"
+            className="hidden sm:inline-flex items-center gap-2 btn-glass-gold font-bold text-sm px-5 py-2.2 rounded-full transition-all duration-200 shadow-lg hover:scale-[1.03] active:scale-95"
           >
             <PhoneCall size={15} />
             <span>যোগাযোগ করুন</span>
@@ -120,7 +120,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenContact, onOpenA
                 setMobileMenuOpen(false);
                 onOpenContact();
               }}
-              className="w-full flex items-center justify-center gap-2 bg-[#F5A623] text-black font-bold py-3 rounded-full text-base shadow-lg shadow-[#F5A623]/20"
+              className="w-full flex items-center justify-center gap-2 btn-glass-gold font-bold py-3 rounded-full text-base shadow-lg"
             >
               <PhoneCall size={18} />
               <span>যোগাযোগ করুন</span>

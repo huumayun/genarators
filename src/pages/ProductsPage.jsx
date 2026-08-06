@@ -10,8 +10,8 @@ export default function ProductsPage({ onSelectProduct, onOpenContact }) {
 
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          product.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          product.description.toLowerCase().includes(searchTerm.toLowerCase());
+      product.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -19,7 +19,7 @@ export default function ProductsPage({ onSelectProduct, onOpenContact }) {
   return (
     <div className="py-12 bg-[#0E0E0E] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white font-heading">
@@ -48,31 +48,28 @@ export default function ProductsPage({ onSelectProduct, onOpenContact }) {
           <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
             <button
               onClick={() => setSelectedCategory('all')}
-              className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
-                selectedCategory === 'all'
-                  ? 'bg-[#F5A623] text-black shadow-md'
+              className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${selectedCategory === 'all'
+                  ? 'btn-glass-gold shadow-md'
                   : 'bg-[#1A1A1A] text-gray-300 hover:text-white border border-white/10'
-              }`}
+                }`}
             >
               সকল জেনারেটর
             </button>
             <button
               onClick={() => setSelectedCategory('soundproof')}
-              className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
-                selectedCategory === 'soundproof'
-                  ? 'bg-[#F5A623] text-black shadow-md'
+              className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${selectedCategory === 'soundproof'
+                  ? 'btn-glass-gold shadow-md'
                   : 'bg-[#1A1A1A] text-gray-300 hover:text-white border border-white/10'
-              }`}
+                }`}
             >
               সাউন্ডপ্রুফ ক্যানোপি
             </button>
             <button
               onClick={() => setSelectedCategory('portable')}
-              className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
-                selectedCategory === 'portable'
-                  ? 'bg-[#F5A623] text-black shadow-md'
+              className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${selectedCategory === 'portable'
+                  ? 'btn-glass-gold shadow-md'
                   : 'bg-[#1A1A1A] text-gray-300 hover:text-white border border-white/10'
-              }`}
+                }`}
             >
               পোর্টেবল জেনারেটর
             </button>
@@ -84,19 +81,20 @@ export default function ProductsPage({ onSelectProduct, onOpenContact }) {
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-[#141414] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-[#F5A623]/40 transition-all duration-300 shadow-lg group"
+              initial={{ opacity: 0, scale: 0.92, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              className="bg-[#141414] border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-[#F5A623]/40 transition-colors duration-300 shadow-lg group smooth-gpu"
             >
-              {/* Product Image Frame */}
-              <div className="bg-[#0E0E0E] border border-white/5 rounded-xl p-4 mb-5 flex items-center justify-center h-52 overflow-hidden">
+              {/* Product Image Frame: 100% Edge-to-Edge Full Cover (No White or Black Borders) */}
+              <div className="rounded-xl mb-5 h-52 sm:h-56 overflow-hidden border border-white/10 relative shadow-md bg-[#181818]">
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
                   onError={(e) => {
-                    e.target.src = "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80";
+                    e.target.src = "/images/perkins-gen.png";
                   }}
                 />
               </div>
@@ -125,7 +123,7 @@ export default function ProductsPage({ onSelectProduct, onOpenContact }) {
               <div className="grid grid-cols-2 gap-2.5 pt-6 mt-auto">
                 <button
                   onClick={() => onSelectProduct(product)}
-                  className="bg-[#F5A623] hover:bg-[#FFB627] text-black font-bold text-xs py-2.5 px-3 rounded-full transition-all text-center flex items-center justify-center gap-1.5 shadow-sm active:scale-95"
+                  className="btn-glass-gold font-bold text-xs py-2.5 px-3 rounded-full transition-all text-center flex items-center justify-center gap-1.5 shadow-sm active:scale-95"
                 >
                   <Eye size={14} />
                   <span>বিস্তারিত দেখুন</span>
@@ -133,7 +131,7 @@ export default function ProductsPage({ onSelectProduct, onOpenContact }) {
 
                 <button
                   onClick={() => onOpenContact(product.title)}
-                  className="bg-transparent hover:bg-white/10 text-white font-medium text-xs py-2.5 px-3 rounded-full border border-white/20 hover:border-white/50 transition-all text-center flex items-center justify-center gap-1.5 active:scale-95"
+                  className="btn-glass-dark font-medium text-xs py-2.5 px-3 rounded-full transition-all text-center flex items-center justify-center gap-1.5 active:scale-95"
                 >
                   <PhoneCall size={14} />
                   <span>যোগাযোগ করুন</span>

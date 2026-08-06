@@ -1,13 +1,26 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Check, Phone, MessageSquare } from 'lucide-react';
 import { companyDetails } from '../../data/mockData';
 
 export default function ProductDetailModal({ product, onClose, onOrderInquiry }) {
-  if (!product) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
-      <div className="relative w-full max-w-3xl bg-[#141414] border border-white/20 rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+    <AnimatePresence>
+      {product && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md smooth-gpu"
+        >
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.92, y: 15 }}
+            transition={{ type: "spring", stiffness: 320, damping: 24 }}
+            className="relative w-full max-w-3xl bg-[#141414] border border-white/20 rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] flex flex-col smooth-gpu"
+          >
         
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#1A1A1A]">
@@ -27,14 +40,14 @@ export default function ProductDetailModal({ product, onClose, onOrderInquiry })
         <div className="p-6 overflow-y-auto space-y-6 flex-1">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
             
-            {/* Image Box */}
-            <div className="bg-[#0E0E0E] border border-white/10 rounded-2xl p-4 flex items-center justify-center h-64">
+            {/* Image Box: 100% Edge-to-Edge Full Cover (No White or Black Borders) */}
+            <div className="rounded-2xl h-64 sm:h-72 overflow-hidden border border-white/10 relative shadow-md bg-[#181818]">
               <img
                 src={product.image}
                 alt={product.title}
-                className="max-h-full max-w-full object-contain"
+                className="w-full h-full object-cover"
                 onError={(e) => {
-                  e.target.src = "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80";
+                  e.target.src = "/images/perkins-gen.png";
                 }}
               />
             </div>
@@ -107,14 +120,16 @@ export default function ProductDetailModal({ product, onClose, onOrderInquiry })
               onClose();
               onOrderInquiry(product.title);
             }}
-            className="flex-1 sm:flex-initial bg-[#F5A623] hover:bg-[#FFB627] text-black font-bold text-xs sm:text-sm py-3 px-6 rounded-full transition-all flex items-center justify-center gap-2 shadow-md shadow-[#F5A623]/20"
+            className="flex-1 sm:flex-initial btn-glass-gold font-bold text-xs sm:text-sm py-3 px-6 rounded-full transition-all flex items-center justify-center gap-2 shadow-md"
           >
             <Phone size={16} />
             <span>কল দিন / ইনকোয়ারি করুন</span>
           </button>
         </div>
 
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

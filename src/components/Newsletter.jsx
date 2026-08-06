@@ -17,10 +17,10 @@ export default function Newsletter() {
   return (
     <section className="py-12 bg-[#0E0E0E]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="bg-[#141414] border-2 border-[#F5A623] rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
+
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-2">
               <h3 className="text-xl sm:text-3xl font-extrabold text-white font-heading">
@@ -50,10 +50,10 @@ export default function Newsletter() {
                   />
                   <button
                     type="submit"
-                    className="w-full sm:w-auto whitespace-nowrap bg-[#F5A623] hover:bg-[#FFB627] text-black font-bold text-sm px-7 py-3.5 rounded-full transition-all shadow-md shadow-[#F5A623]/20 flex items-center justify-center gap-2 active:scale-95"
+                    className="w-full sm:w-auto whitespace-nowrap btn-glass-gold font-bold text-sm px-7 py-3.5 rounded-full transition-all shadow-md flex items-center justify-center gap-2 active:scale-95"
                   >
-                    <span>সাবস্ক্রাইব</span>
-                    <Send size={15} />
+                    <span>সাবস্ক্রাইব করুন</span>
+                    <Send size={16} />
                   </button>
                 </form>
               )}

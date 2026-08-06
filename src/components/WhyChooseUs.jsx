@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Award, Wrench, DollarSign, ArrowRight } from 'lucide-react';
-import { whyChooseUsData } from '../data/mockData';
+import { useData } from '../context/DataContext';
 
 export default function WhyChooseUs({ onNavigateAbout }) {
+  const { whyChooseUs } = useData();
   const getIcon = (iconName) => {
     switch (iconName) {
       case 'Shield': return <ShieldCheck className="w-5 h-5 text-[#F5A623]" />;
@@ -15,9 +16,9 @@ export default function WhyChooseUs({ onNavigateAbout }) {
   };
 
   return (
-    <section className="py-12 lg:py-16 bg-[#0E0E0E] relative font-bengali">
+    <section className="py-12 lg:py-16 bg-black/40 backdrop-blur-sm relative font-bengali">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-8 space-y-2">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white font-heading tracking-wide">
@@ -30,14 +31,15 @@ export default function WhyChooseUs({ onNavigateAbout }) {
 
         {/* 4 Sleek Horizontal Cards Grid matching exact screenshot 1:1 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {whyChooseUsData.map((card, index) => (
+          {whyChooseUs.map((card, index) => (
             <motion.div
               key={card.id}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-[#F5A623] text-black p-4 sm:p-5 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-[#F5A623]/20 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-3.5"
+              initial={{ opacity: 0, scale: 0.9, y: 15 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.4, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+              className="bg-[#F5A623] text-black p-4 sm:p-5 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-[#F5A623]/20 transition-all duration-300 flex items-center gap-3.5 smooth-gpu"
             >
               {/* Dark Icon Circle on Left */}
               <div className="w-11 h-11 rounded-full bg-black flex items-center justify-center shrink-0 shadow-md">
@@ -61,7 +63,7 @@ export default function WhyChooseUs({ onNavigateAbout }) {
         <div className="text-center pt-8">
           <button
             onClick={onNavigateAbout}
-            className="inline-flex items-center justify-center bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs sm:text-sm px-8 py-2.5 rounded-full transition-all duration-200 shadow-md shadow-[#F5A623]/20 hover:scale-[1.03] active:scale-95"
+            className="inline-flex items-center justify-center btn-glass-gold font-extrabold text-xs sm:text-sm px-8 py-2.5 rounded-full transition-all duration-200 shadow-md hover:scale-[1.03] active:scale-95"
           >
             <span>আরও জানুন</span>
           </button>

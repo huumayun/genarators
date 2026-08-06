@@ -7,9 +7,9 @@ import {
   Inbox, 
   LogOut, 
   Globe, 
-  ShieldAlert, 
-  LayoutDashboard,
-  PhoneCall
+  Wrench,
+  Star,
+  Award
 } from 'lucide-react';
 
 import ProductsAdmin from './ProductsAdmin';
@@ -17,16 +17,24 @@ import TeamAdmin from './TeamAdmin';
 import ProjectsAdmin from './ProjectsAdmin';
 import SettingsAdmin from './SettingsAdmin';
 import InquiriesAdmin from './InquiriesAdmin';
+import ServicesAdmin from './ServicesAdmin';
+import BrandsAdmin from './BrandsAdmin';
+import ReviewsAdmin from './ReviewsAdmin';
+import StatsAdmin from './StatsAdmin';
 import { useData } from '../../context/DataContext';
 
 export default function AdminDashboard({ onExitAdmin }) {
-  const { logoutAdmin, products, corporateClients, ownerAndTeam, inquiries, companyDetails } = useData();
+  const { logoutAdmin, products, services, brands, testimonials, corporateClients, ownerAndTeam, inquiries, companyDetails } = useData();
   const [activeTab, setActiveTab] = useState('products');
 
   const navItems = [
     { id: 'products', label: 'জেনারেটর ক্যাটালগ', icon: Package, count: products.length },
-    { id: 'team', label: 'স্বত্বাধিকারী ও টিম সদস্য', icon: Users, count: ownerAndTeam.team.length + 1 },
+    { id: 'services', label: 'সার্ভিসসমূহ', icon: Wrench, count: services.length },
+    { id: 'brands', label: 'ব্র্যান্ডসমূহ', icon: Globe, count: brands.length },
+    { id: 'reviews', label: 'গ্রাহক রিভিউ', icon: Star, count: testimonials.length },
     { id: 'projects', label: 'কর্পোরেট ক্লায়েন্ট প্রজেক্ট', icon: Building2, count: corporateClients.length },
+    { id: 'team', label: 'স্বত্বাধিকারী ও টিম সদস্য', icon: Users, count: ownerAndTeam.team.length + 1 },
+    { id: 'stats', label: 'পরিসংখ্যান ও অর্জন', icon: Award },
     { id: 'inquiries', label: 'কাস্টমার ইনকোয়ারি', icon: Inbox, count: inquiries.length, badge: inquiries.length > 0 },
     { id: 'settings', label: 'শপ কন্টাক্ট সেটিংস', icon: Settings },
   ];
@@ -46,7 +54,7 @@ export default function AdminDashboard({ onExitAdmin }) {
                 {companyDetails.name} — এডমিন প্যানেল
               </h1>
               <p className="text-[11px] text-[#F5A623] font-semibold">
-                লাইভ কন্টেন্ট ও প্রোডাক্ট কন্ট্রোল সেন্টার
+                লাইভ কন্টেন্ট ও প্রোডাক্ট কন্ট্রোল সেন্টার (A to Z Control)
               </p>
             </div>
           </div>
@@ -77,7 +85,7 @@ export default function AdminDashboard({ onExitAdmin }) {
         {/* Left Navigation Sidebar */}
         <aside className="lg:col-span-3 bg-[#141414] border border-white/10 rounded-3xl p-4 space-y-2 sticky top-20">
           <div className="px-3 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
-            এডমিন মেনু
+            এডমিন মেনু (A-Z)
           </div>
 
           {navItems.map((item) => {
@@ -119,8 +127,12 @@ export default function AdminDashboard({ onExitAdmin }) {
         {/* Right Active Admin Tab Content */}
         <main className="lg:col-span-9 space-y-6">
           {activeTab === 'products' && <ProductsAdmin />}
-          {activeTab === 'team' && <TeamAdmin />}
+          {activeTab === 'services' && <ServicesAdmin />}
+          {activeTab === 'brands' && <BrandsAdmin />}
+          {activeTab === 'reviews' && <ReviewsAdmin />}
           {activeTab === 'projects' && <ProjectsAdmin />}
+          {activeTab === 'team' && <TeamAdmin />}
+          {activeTab === 'stats' && <StatsAdmin />}
           {activeTab === 'inquiries' && <InquiriesAdmin />}
           {activeTab === 'settings' && <SettingsAdmin />}
         </main>

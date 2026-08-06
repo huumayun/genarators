@@ -10,7 +10,7 @@ export default function TeamSection() {
   return (
     <section className="py-16 lg:py-24 bg-[#0A0A0A] relative border-b border-white/5 font-bengali">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F5A623]/15 text-[#F5A623] border border-[#F5A623]/30 text-xs font-semibold">
@@ -31,15 +31,15 @@ export default function TeamSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-[#141414] border-2 border-[#F5A623]/40 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="bg-[#141414] border-2 border-[#F5A623]/40 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden smooth-gpu"
         >
           {/* Subtle Glow */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-[#F5A623]/10 rounded-full blur-3xl -z-0 pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-            
+
             {/* Owner Avatar & Badges */}
             <div className="lg:col-span-4 flex flex-col items-center text-center space-y-4">
               <div className="relative">
@@ -116,11 +116,12 @@ export default function TeamSection() {
             {team.map((member, index) => (
               <motion.div
                 key={member.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-[#141414] border border-white/10 p-5 rounded-2xl flex flex-col justify-between hover:border-[#F5A623]/40 transition-all shadow-lg group"
+                initial={{ opacity: 0, scale: 0.92, y: 15 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.45, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ scale: 1.025, transition: { duration: 0.2 } }}
+                className="bg-[#141414] border border-white/10 p-5 rounded-2xl flex flex-col justify-between hover:border-[#F5A623]/40 transition-colors shadow-lg group smooth-gpu"
               >
                 <div className="space-y-4 text-center">
                   <img

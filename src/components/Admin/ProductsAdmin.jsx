@@ -107,11 +107,11 @@ export default function ProductsAdmin() {
             className="bg-[#141414] border border-white/10 rounded-2xl p-4 flex flex-col justify-between space-y-4 hover:border-[#F5A623]/30 transition-all shadow-lg"
           >
             <div className="space-y-3">
-              <div className="bg-[#0E0E0E] rounded-xl p-3 h-40 flex items-center justify-center overflow-hidden border border-white/5">
+              <div className="rounded-xl h-44 overflow-hidden border border-white/10 shadow-md bg-[#181818]">
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="max-h-full max-w-full object-contain"
+                  className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.src = '/images/perkins-gen.png';
                   }}
@@ -223,16 +223,47 @@ export default function ProductsAdmin() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">ছবি পাথ / URL *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="যেমন: /images/cummins-gen.png"
-                  value={formData.image}
-                  onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#F5A623]"
-                />
+              {/* Image URL with Live Preview & Guideline */}
+              <div className="space-y-2 bg-[#0E0E0E] p-4 rounded-2xl border border-white/10">
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-bold text-white flex items-center gap-1.5">
+                    <ImageIcon size={16} className="text-[#F5A623]" />
+                    <span>জেনারেটর ছবির লিঙ্ক / URL *</span>
+                  </label>
+                  <span className="text-[10px] text-[#F5A623] font-semibold">লাইভ প্রিভিউ</span>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 items-center">
+                  <input
+                    type="text"
+                    required
+                    placeholder="ছবি লিঙ্ক দিন (যেমন: https://i.imgur.com/sample.png অথবা /images/perkins-gen.png)"
+                    value={formData.image}
+                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    className="flex-1 w-full bg-[#141414] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#F5A623]"
+                  />
+
+                  {/* Live Image Preview Frame */}
+                  <div className="w-20 h-20 rounded-xl bg-[#141414] border border-[#F5A623]/30 p-1 flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
+                    <img
+                      src={formData.image || '/images/perkins-gen.png'}
+                      alt="Preview"
+                      className="max-h-full max-w-full object-contain rounded-lg"
+                      onError={(e) => {
+                        e.target.src = '/images/perkins-gen.png';
+                      }}
+                    />
+                  </div>
+                </div>
+
+                <div className="text-[11px] text-gray-400 bg-white/5 p-2.5 rounded-xl border border-white/5 space-y-1">
+                  <p className="font-bold text-[#F5A623]">📸 ছবি আপলোড করার গাইডলাইন:</p>
+                  <ul className="list-disc list-inside space-y-0.5 text-gray-300">
+                    <li>অনলাইন ইমেজের সরাসরি ডাইরেক্ট লিঙ্ক ব্যবহার করুন (যেমন: ImgBB, Imgur বা ওয়েবসাইট সার্ভার)।</li>
+                    <li>ছবি অবশ্যই <code className="text-[#F5A623] bg-black/40 px-1 py-0.5 rounded">.jpg</code>, <code className="text-[#F5A623] bg-black/40 px-1 py-0.5 rounded">.png</code>, বা <code className="text-[#F5A623] bg-black/40 px-1 py-0.5 rounded">.webp</code> ফরম্যাটের হতে হবে।</li>
+                    <li>ওয়েবসাইটের নিজস্ব লোকাল ছবি ব্যবহার করতে চাইলে: <code className="text-[#F5A623] bg-black/40 px-1 py-0.5 rounded">/images/cummins-gen.png</code> লিখুন।</li>
+                  </ul>
+                </div>
               </div>
 
               <div>

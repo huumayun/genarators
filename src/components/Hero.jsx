@@ -1,14 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Settings, Wrench, Globe, ArrowRight } from 'lucide-react';
-import { companyDetails } from '../data/mockData';
+import { useData } from '../context/DataContext';
 
 export default function Hero({ onNavigateProducts, onNavigateServices }) {
+  const { companyDetails } = useData();
   return (
     <section className="relative overflow-hidden bg-[#0E0E0E] min-h-[480px] sm:min-h-[540px] flex items-center border-b border-white/10">
-      
+
       {/* Background Banner Image matching exact design screenshot */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-right lg:bg-center bg-no-repeat pointer-events-none z-0"
         style={{
           backgroundImage: `url('/images/hero-bg-banner.png')`
@@ -20,13 +21,13 @@ export default function Hero({ onNavigateProducts, onNavigateServices }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-12 lg:py-16 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
+
           {/* Left Hero Text Content */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-7 space-y-5 text-left"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7 space-y-5 text-left smooth-gpu"
           >
             {/* Main Title */}
             <h1 className="text-3xl sm:text-5xl font-extrabold text-white leading-tight font-heading">
@@ -69,7 +70,7 @@ export default function Hero({ onNavigateProducts, onNavigateServices }) {
             <div className="flex flex-wrap items-center gap-4 pt-3">
               <button
                 onClick={onNavigateProducts}
-                className="bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-sm sm:text-base px-7 py-3 rounded-full transition-all duration-200 shadow-xl shadow-[#F5A623]/30 hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-2"
+                className="btn-glass-gold font-extrabold text-sm sm:text-base px-7 py-3 rounded-full transition-all duration-200 shadow-xl hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-2"
               >
                 <span>জেনারেটর দেখুন</span>
                 <ArrowRight size={18} />
@@ -77,7 +78,7 @@ export default function Hero({ onNavigateProducts, onNavigateServices }) {
 
               <button
                 onClick={onNavigateServices}
-                className="bg-black/50 hover:bg-white/15 text-white font-medium text-sm sm:text-base px-6 py-3 rounded-full border border-white/30 hover:border-white/60 backdrop-blur-sm transition-all duration-200 flex items-center justify-center"
+                className="btn-glass-dark font-medium text-sm sm:text-base px-6 py-3 rounded-full transition-all duration-200 flex items-center justify-center"
               >
                 সার্ভিস সম্পর্কে জানুন
               </button>

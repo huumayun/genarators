@@ -20,7 +20,7 @@ export default function ClientProjects({ onOpenContact }) {
   return (
     <section className="py-16 lg:py-24 bg-[#0E0E0E] relative border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F5A623]/15 text-[#F5A623] border border-[#F5A623]/30 text-xs font-semibold">
@@ -42,11 +42,12 @@ export default function ClientProjects({ onOpenContact }) {
           {corporateClients.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#141414] border border-white/10 p-6 rounded-2xl flex flex-col justify-between hover:border-[#F5A623]/50 transition-all duration-300 shadow-xl group hover:shadow-[#F5A623]/10"
+              initial={{ opacity: 0, scale: 0.92, y: 15 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.45, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              className="bg-[#141414] border border-white/10 p-6 rounded-2xl flex flex-col justify-between hover:border-[#F5A623]/50 transition-colors duration-300 shadow-xl group hover:shadow-[#F5A623]/10 smooth-gpu"
             >
               <div className="space-y-4">
                 {/* Header Badge */}
@@ -113,7 +114,7 @@ export default function ClientProjects({ onOpenContact }) {
           </p>
           <button
             onClick={() => onOpenContact('ইন্ডাস্ট্রিয়াল জেনারেটর কোটেশন')}
-            className="inline-flex items-center gap-2 bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-sm sm:text-base px-8 py-3.5 rounded-full transition-all shadow-lg shadow-[#F5A623]/25 active:scale-95"
+            className="inline-flex items-center gap-2 btn-glass-gold font-extrabold text-sm sm:text-base px-8 py-3.5 rounded-full transition-all shadow-lg hover:scale-105 active:scale-95"
           >
             <PhoneCall size={18} />
             <span>প্রজেক্টের জন্য কোটেশন নিন</span>

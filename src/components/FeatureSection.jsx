@@ -14,14 +14,14 @@ export default function FeatureSection() {
     <section className="py-16 lg:py-24 bg-[#0E0E0E] relative border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Left Text & Checkmarks */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-7 space-y-6"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7 space-y-6 smooth-gpu"
           >
             <h2 className="text-2xl sm:text-4xl font-extrabold text-white leading-tight font-heading">
               শক্তিশালী জেনারেটর, <br />
@@ -34,13 +34,13 @@ export default function FeatureSection() {
 
             <div className="space-y-3.5 pt-2">
               {checkItems.map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="flex items-center gap-3"
+                  transition={{ duration: 0.45, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex items-center gap-3 smooth-gpu"
                 >
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#F5A623] flex items-center justify-center text-black font-bold">
                     <CheckCircle2 size={16} className="text-black" />
@@ -52,12 +52,12 @@ export default function FeatureSection() {
           </motion.div>
 
           {/* Right Image (Kipor Generator on Yellow Studio Circle Base) */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-5 flex justify-center relative"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 flex justify-center relative smooth-gpu"
           >
             {/* Yellow Background Ellipse Platform matching design screenshot */}
             <div className="relative w-full max-w-md aspect-square flex items-center justify-center">

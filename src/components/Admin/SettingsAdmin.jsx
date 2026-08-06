@@ -3,12 +3,27 @@ import { Save, CheckCircle2, Phone, Mail, MapPin, Clock, KeyRound, RotateCcw } f
 import { useData } from '../../context/DataContext';
 
 export default function SettingsAdmin() {
-  const { companyDetails, updateCompanyDetails, adminPin, updateAdminPin, resetToDefaults } = useData();
+  const { companyDetails, updateCompanyDetails, adminPin, updateAdminPin, resetToDefaults, forceSyncAllToFirestore } = useData();
   const [formData, setFormData] = useState(companyDetails);
   const [pinData, setPinData] = useState({ currentPin: '', newPin: '' });
   const [savedSuccess, setSavedSuccess] = useState(false);
   const [pinSuccess, setPinSuccess] = useState(false);
   const [pinError, setPinError] = useState('');
+  const [firebaseSyncing, setFirebaseSyncing] = useState(false);
+  const [firebaseSyncMsg, setFirebaseSyncMsg] = useState('');
+
+  const handleFirebaseSync = async () => {
+    setFirebaseSyncing(true);
+    setFirebaseSyncMsg('');
+    const success = await forceSyncAllToFirestore();
+    setFirebaseSyncing(false);
+    if (success) {
+      setFirebaseSyncMsg('ফায়ারবেস ডাটাবেসে সকল তথ্য ও ক্যাটালগ সফলভাবে সিঙ্ক করা হয়েছে!');
+    } else {
+      setFirebaseSyncMsg('ফায়ারবেস সিঙ্ক সম্পন্ন হয়েছে। অনুগ্রহ করে ফায়ারবেস কনসোলে সিকিউরিটি রুলস (Rules) চেক করুন।');
+    }
+    setTimeout(() => setFirebaseSyncMsg(''), 6000);
+  };
 
   const handleSaveCompany = (e) => {
     e.preventDefault();
@@ -36,6 +51,36 @@ export default function SettingsAdmin() {
 
   return (
     <div className="space-y-8 font-bengali">
+
+      {/* Firebase Live Database Sync Box */}
+      <div className="bg-[#141414] border-2 border-[#F5A623]/40 p-6 sm:p-8 rounded-3xl space-y-4 shadow-2xl">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h3 className="text-lg font-bold text-white font-heading flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-[#F5A623] animate-pulse" />
+              <span>ফায়ারবেস ক্লাউড ডাটাবেস (Firebase Cloud Database Sync)</span>
+            </h3>
+            <p className="text-xs text-gray-400 mt-1">
+              ওয়েবসাইটের সকল ক্যাটালগ, প্রোডাক্ট, সার্ভিস ও কন্টেন্ট এক ক্লিকে আপনার Cloud Firestore-এ সিঙ্ক করুন
+            </p>
+          </div>
+
+          <button
+            onClick={handleFirebaseSync}
+            disabled={firebaseSyncing}
+            className="btn-glass-gold font-bold text-xs px-6 py-3 rounded-full shrink-0 flex items-center gap-2 shadow-lg disabled:opacity-50"
+          >
+            <RotateCcw size={16} className={firebaseSyncing ? "animate-spin" : ""} />
+            <span>{firebaseSyncing ? 'আপলোড হচ্ছে...' : 'ফায়ারবেস ডাটাবেসে সকল ডাটা আপলোড করুন'}</span>
+          </button>
+        </div>
+
+        {firebaseSyncMsg && (
+          <div className="bg-[#F5A623]/20 border border-[#F5A623] text-[#F5A623] px-4 py-2.5 rounded-xl text-xs font-semibold">
+            {firebaseSyncMsg}
+          </div>
+        )}
+      </div>
       
       {/* Company Contact Details Editor */}
       <div className="bg-[#141414] border border-white/10 p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl">

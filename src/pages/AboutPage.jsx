@@ -6,7 +6,7 @@ export default function AboutPage({ onOpenContact }) {
   return (
     <div className="py-12 bg-[#0E0E0E] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        
+
         {/* Page Hero Title */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5A623]/15 text-[#F5A623] border border-[#F5A623]/30 text-xs font-semibold">
@@ -113,7 +113,7 @@ export default function AboutPage({ onOpenContact }) {
         <div className="text-center pt-6">
           <button
             onClick={onOpenContact}
-            className="bg-[#F5A623] hover:bg-[#FFB627] text-black font-bold text-base px-8 py-3.5 rounded-full transition-all shadow-lg shadow-[#F5A623]/25"
+            className="btn-glass-gold font-bold text-base px-8 py-3.5 rounded-full transition-all shadow-lg"
           >
             আমাদের সাথে যোগাযোগ করুন
           </button>

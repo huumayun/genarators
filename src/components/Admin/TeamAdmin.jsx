@@ -306,6 +306,34 @@ export default function TeamAdmin() {
                 />
               </div>
 
+              {/* Team Member Image URL with Live Preview */}
+              <div className="space-y-1.5 bg-[#0E0E0E] p-3 rounded-2xl border border-white/10">
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-bold text-white">মেম্বারের ছবি URL (ঐচ্ছিক)</label>
+                  <span className="text-[10px] text-[#F5A623]">লাইভ প্রিভিউ</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="text"
+                    placeholder="ছবি লিঙ্ক দিন (যেমন: https://i.imgur.com/photo.jpg)"
+                    value={memberFormData.image}
+                    onChange={(e) => setMemberFormData({ ...memberFormData, image: e.target.value })}
+                    className="flex-1 bg-[#141414] border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#F5A623]"
+                  />
+                  <div className="w-10 h-10 rounded-full bg-[#141414] border border-[#F5A623] overflow-hidden shrink-0">
+                    <img
+                      src={memberFormData.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(memberFormData.name || 'Member')}&background=F5A623&color=000&bold=true`}
+                      alt="Preview"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(memberFormData.name || 'Member')}&background=F5A623&color=000&bold=true`;
+                      }}
+                    />
+                  </div>
+                </div>
+                <p className="text-[10px] text-gray-400">💡 ফাঁকা রাখলে নামের উপর ভিত্তি করে অটোমেটিক প্রোফাইল ছবি তৈরি হবে।</p>
+              </div>
+
               <div className="pt-3 flex justify-end gap-3">
                 <button
                   type="button"

@@ -31,7 +31,7 @@ export default function ContactPage() {
   return (
     <div className="py-12 bg-[#0E0E0E] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white font-heading">
@@ -43,10 +43,10 @@ export default function ContactPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* Left Column: Info Cards */}
           <div className="lg:col-span-5 space-y-4">
-            
+
             {/* Phone Card */}
             <div className="bg-[#141414] border border-white/10 p-5 rounded-2xl flex items-center gap-4 hover:border-[#F5A623]/30 transition-all">
               <div className="w-12 h-12 rounded-xl bg-[#F5A623]/15 text-[#F5A623] flex items-center justify-center shrink-0">
@@ -191,7 +191,7 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-[#F5A623] hover:bg-[#FFB627] text-black font-bold text-sm py-3.5 rounded-full transition-all shadow-md shadow-[#F5A623]/20 flex items-center justify-center gap-2"
+                  className="w-full btn-glass-gold font-bold text-sm py-3.5 rounded-full transition-all shadow-md flex items-center justify-center gap-2"
                 >
                   <span>মেসেজ পাঠান</span>
                   <Send size={16} />

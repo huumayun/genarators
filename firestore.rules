@@ -1,0 +1,14 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Allow public read access so any visitor can browse products, services & shop details.
+    // Allow write/update/delete access ONLY to authenticated Admins (logged in via Firebase Auth).
+    match /{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+  }
+}

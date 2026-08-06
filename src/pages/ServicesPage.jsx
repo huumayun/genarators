@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Wrench, Cog, Zap, ShieldCheck, CheckCircle2, PhoneCall } from 'lucide-react';
-import { servicesData, companyDetails } from '../data/mockData';
+import { useData } from '../context/DataContext';
 
 export default function ServicesPage({ onOpenServiceBooking }) {
+  const { services, companyDetails } = useData();
   const getIcon = (iconName) => {
     switch (iconName) {
       case 'Wrench': return <Wrench className="w-7 h-7 text-[#F5A623]" />;
@@ -15,9 +16,9 @@ export default function ServicesPage({ onOpenServiceBooking }) {
   };
 
   return (
-    <div className="py-12 bg-[#0E0E0E] min-h-screen">
+    <div className="py-12 bg-black/30 backdrop-blur-sm min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F5A623]/15 text-[#F5A623] border border-[#F5A623]/30 text-xs font-semibold">
@@ -36,13 +37,14 @@ export default function ServicesPage({ onOpenServiceBooking }) {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {servicesData.map((service, index) => (
+          {services.map((service, index) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-[#141414] border border-white/10 p-6 sm:p-8 rounded-3xl space-y-5 flex flex-col justify-between hover:border-[#F5A623]/40 transition-all shadow-xl group"
+              initial={{ opacity: 0, scale: 0.92, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.015, transition: { duration: 0.2 } }}
+              className="bg-[#141414] border border-white/10 p-6 sm:p-8 rounded-3xl space-y-5 flex flex-col justify-between hover:border-[#F5A623]/40 transition-colors shadow-xl group smooth-gpu"
             >
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
@@ -74,7 +76,7 @@ export default function ServicesPage({ onOpenServiceBooking }) {
               <div className="pt-6 border-t border-white/10">
                 <button
                   onClick={() => onOpenServiceBooking(service.title)}
-                  className="w-full bg-[#F5A623] hover:bg-[#FFB627] text-black font-bold text-sm py-3 rounded-full transition-all text-center flex items-center justify-center gap-2 shadow-md shadow-[#F5A623]/20"
+                  className="w-full btn-glass-gold font-bold text-sm py-3 rounded-full transition-all text-center flex items-center justify-center gap-2 shadow-md"
                 >
                   <PhoneCall size={16} />
                   <span>সার্ভিস বুক করুন</span>
@@ -94,7 +96,7 @@ export default function ServicesPage({ onOpenServiceBooking }) {
           </p>
           <a
             href={`tel:${companyDetails.phone}`}
-            className="inline-flex items-center gap-2 bg-[#F5A623] text-black font-extrabold text-base px-8 py-3.5 rounded-full shadow-lg shadow-[#F5A623]/30 hover:scale-105 transition-transform"
+            className="inline-flex items-center gap-2 btn-glass-gold font-extrabold text-base px-8 py-3.5 rounded-full shadow-lg hover:scale-105 transition-transform"
           >
             <PhoneCall size={18} />
             <span>কল দিন: {companyDetails.phone}</span>

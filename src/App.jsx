@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -59,77 +60,105 @@ function MainApp() {
     return <AdminDashboard onExitAdmin={() => handleNavigate('home')} />;
   }
 
+  const pageVariants = {
+    initial: { opacity: 0, scale: 0.96, y: 12 },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.97,
+      y: -8,
+      transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#0E0E0E] text-white flex flex-col font-bengali">
       {/* Top Thin Contact Bar */}
       <TopBar onOpenAdmin={() => handleNavigate('admin')} />
 
       {/* Main Sticky Navbar */}
-      <Navbar 
-        activeTab={activeTab} 
-        setActiveTab={setActiveTab} 
-        onOpenContact={() => handleOpenContact('সাধারণ ইনকোয়ারি')} 
+      <Navbar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        onOpenContact={() => handleOpenContact('সাধারণ ইনকোয়ারি')}
         onOpenAdmin={() => handleNavigate('admin')}
       />
 
       {/* Main Dynamic Page Content */}
-      <main className="flex-1">
-        {activeTab === 'home' && (
-          <>
-            <Hero 
-              onNavigateProducts={() => handleNavigate('products')} 
-              onNavigateServices={() => handleNavigate('services')} 
-            />
-            <FeatureSection />
-            <ProductGrid 
-              onSelectProduct={(product) => setSelectedProduct(product)}
-              onOpenContact={(title) => handleOpenContact(`জেনারেটর ইনকোয়ারি: ${title}`)}
-              onNavigateProducts={() => handleNavigate('products')}
-            />
-            <ServiceBanner 
-              onOpenServiceBooking={() => handleOpenContact('জেনারেটর সার্ভিসিং বুকিং')} 
-            />
-            <WhyChooseUs 
-              onNavigateAbout={() => handleNavigate('about')} 
-            />
-            <ClientProjects 
-              onOpenContact={(subj) => handleOpenContact(subj)} 
-            />
-            <TeamSection />
-            <Testimonials 
-              onNavigateAbout={() => handleNavigate('about')} 
-            />
-            <StatsBar />
-            <Newsletter />
-          </>
-        )}
+      <main className="flex-1 overflow-hidden">
+        <AnimatePresence mode="wait">
+          {activeTab === 'home' && (
+            <motion.div key="home" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="smooth-gpu">
+              <Hero
+                onNavigateProducts={() => handleNavigate('products')}
+                onNavigateServices={() => handleNavigate('services')}
+              />
+              <FeatureSection />
+              <ProductGrid
+                onSelectProduct={(product) => setSelectedProduct(product)}
+                onOpenContact={(title) => handleOpenContact(`জেনারেটর ইনকোয়ারি: ${title}`)}
+                onNavigateProducts={() => handleNavigate('products')}
+              />
+              <ServiceBanner
+                onOpenServiceBooking={() => handleOpenContact('জেনারেটর সার্ভিসিং বুকিং')}
+              />
+              <WhyChooseUs
+                onNavigateAbout={() => handleNavigate('about')}
+              />
+              <ClientProjects
+                onOpenContact={(subj) => handleOpenContact(subj)}
+              />
+              <TeamSection />
+              <Testimonials
+                onNavigateAbout={() => handleNavigate('about')}
+              />
+              <StatsBar />
+              <Newsletter />
+            </motion.div>
+          )}
 
-        {activeTab === 'about' && (
-          <AboutPage onOpenContact={() => handleOpenContact('আমাদের সম্পর্কে তথ্য')} />
-        )}
+          {activeTab === 'about' && (
+            <motion.div key="about" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="smooth-gpu">
+              <AboutPage onOpenContact={() => handleOpenContact('আমাদের সম্পর্কে তথ্য')} />
+            </motion.div>
+          )}
 
-        {activeTab === 'products' && (
-          <ProductsPage 
-            onSelectProduct={(product) => setSelectedProduct(product)}
-            onOpenContact={(title) => handleOpenContact(`জেনারেটর ইনকোয়ারি: ${title}`)}
-          />
-        )}
+          {activeTab === 'products' && (
+            <motion.div key="products" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="smooth-gpu">
+              <ProductsPage
+                onSelectProduct={(product) => setSelectedProduct(product)}
+                onOpenContact={(title) => handleOpenContact(`জেনারেটর ইনকোয়ারি: ${title}`)}
+              />
+            </motion.div>
+          )}
 
-        {activeTab === 'services' && (
-          <ServicesPage 
-            onOpenServiceBooking={(serviceName) => handleOpenContact(`সার্ভিস অনুরোধ: ${serviceName}`)}
-          />
-        )}
+          {activeTab === 'services' && (
+            <motion.div key="services" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="smooth-gpu">
+              <ServicesPage
+                onOpenServiceBooking={(serviceName) => handleOpenContact(`সার্ভিস অনুরোধ: ${serviceName}`)}
+              />
+            </motion.div>
+          )}
 
-        {activeTab === 'brands' && (
-          <BrandsPage 
-            onNavigateProducts={() => handleNavigate('products')} 
-          />
-        )}
+          {activeTab === 'brands' && (
+            <motion.div key="brands" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="smooth-gpu">
+              <BrandsPage
+                onNavigateProducts={() => handleNavigate('products')}
+              />
+            </motion.div>
+          )}
 
-        {activeTab === 'contact' && (
-          <ContactPage />
-        )}
+          {activeTab === 'contact' && (
+            <motion.div key="contact" variants={pageVariants} initial="initial" animate="animate" exit="exit" className="smooth-gpu">
+              <ContactPage />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
 
       {/* Main Footer */}
