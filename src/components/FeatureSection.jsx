@@ -225,14 +225,6 @@ function GeneratorHotspots() {
         </AnimatePresence>
 
       </div>
-
-      {/* Bottom Hint */}
-      <div className="text-center pt-4">
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#141414] border border-[#F5A623]/30 text-xs text-gray-200 font-bengali shadow-md">
-          <Sparkles size={14} className="text-[#F5A623]" />
-          <span>অটো প্রোডাক্ট ট্যুর অথবা নির্দিষ্ট পার্টসে হোভার করুন</span>
-        </span>
-      </div>
     </div>
   );
 }
