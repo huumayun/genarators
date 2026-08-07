@@ -161,12 +161,13 @@ export function DataProvider({ children }) {
           if (data.ownerAndTeam) setOwnerAndTeam(data.ownerAndTeam);
           if (data.inquiries) setInquiries(data.inquiries);
         } else {
-          // First time database setup: seed initial document to Firestore
-          forceSyncAllToFirestore();
+          // First time database setup: seed initial document to Firestore if authenticated Admin
+          if (auth && auth.currentUser) {
+            forceSyncAllToFirestore();
+          }
         }
         isFirestoreInitialized.current = true;
-      }, (err) => {
-        console.warn("Firestore snapshot listener notice:", err);
+      }, () => {
         isFirestoreInitialized.current = true;
       });
 
