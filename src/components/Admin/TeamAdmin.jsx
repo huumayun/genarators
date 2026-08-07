@@ -234,6 +234,34 @@ export default function TeamAdmin() {
                     className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
                   />
                 </div>
+
+                {/* Owner Profile Picture URL with Live Preview */}
+                <div className="space-y-2 bg-[#0E0E0E] p-3.5 rounded-2xl border border-white/10">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-bold text-white">মালিকের ছবি URL / লিঙ্ক</label>
+                    <span className="text-[10px] text-[#F5A623] font-semibold">লাইভ প্রিভিউ</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="text"
+                      placeholder="ছবি লিঙ্ক দিন (যেমন: https://i.imgur.com/owner.jpg)"
+                      value={ownerFormData.image || ''}
+                      onChange={(e) => setOwnerFormData({ ...ownerFormData, image: e.target.value })}
+                      className="flex-1 w-full bg-[#141414] border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-[#F5A623]"
+                    />
+                    <div className="w-12 h-12 rounded-full bg-[#141414] border-2 border-[#F5A623] overflow-hidden shrink-0 shadow-md">
+                      <img
+                        src={ownerFormData.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(ownerFormData.name || 'Owner')}&background=F5A623&color=000&bold=true`}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(ownerFormData.name || 'Owner')}&background=F5A623&color=000&bold=true`;
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <p className="text-[10px] text-gray-400">📸 ছবি লিঙ্ক দিন বা ফাঁকা রাখলে অটোমেটিক প্রোফাইল ছবি তৈরি হবে।</p>
+                </div>
               </div>
 
               <div className="px-5 py-3.5 border-t border-white/10 bg-[#1A1A1A] flex items-center justify-end gap-3 shrink-0">
