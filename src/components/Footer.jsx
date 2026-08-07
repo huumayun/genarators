@@ -210,7 +210,7 @@ export default function Footer({ onNavigate }) {
 
       </div>
 
-      {/* ULTRA PROFESSIONAL DEVELOPER CARD MODAL (Clean, No Emojis, No Social Buttons) */}
+      {/* 100% ENGLISH ULTRA PROFESSIONAL DEVELOPER CARD MODAL */}
       <AnimatePresence>
         {showDevModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-lg">
@@ -275,18 +275,18 @@ export default function Footer({ onNavigate }) {
                 </div>
               </div>
 
-              {/* 2. Quotation Banner */}
+              {/* 2. Quotation Banner (100% English) */}
               <div className="relative z-10 bg-[#121318]/90 border border-white/10 p-4 sm:p-5 rounded-2xl flex items-start gap-3 shadow-inner">
                 <span className="text-3xl text-[#F5A623] font-serif leading-none shrink-0 select-none">
                   “
                 </span>
                 <p className="text-xs sm:text-sm text-gray-200 leading-relaxed font-medium">
-                  আপনার ব্যবসার জন্য আধুনিক রেসপন্সিভ ওয়েবসাইট, ওয়েব অ্যাপ বা যেকোনো সফটওয়্যার ডেভলপমেন্ট সেবার জন্য সরাসরি{' '}
-                  <span className="text-[#F5A623] font-bold">যোগাযোগ করুন।</span>
+                  Get in touch for modern responsive websites, web applications, and custom software development{' '}
+                  <span className="text-[#F5A623] font-bold">tailored for your business.</span>
                 </p>
               </div>
 
-              {/* 3. Email Box Row */}
+              {/* 3. Email Box Row (100% English) */}
               <div className="relative z-10 bg-[#121318]/90 border border-white/10 p-3 sm:p-3.5 rounded-2xl flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
                 <div className="flex items-center gap-3 min-w-0 pl-1">
                   <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-[#F5A623]/30 text-[#F5A623] flex items-center justify-center shrink-0">
@@ -306,7 +306,7 @@ export default function Footer({ onNavigate }) {
                   <button
                     onClick={handleCopyEmail}
                     className="p-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-gray-200 transition-colors border border-white/10"
-                    title="কপি করুন"
+                    title="Copy Email"
                   >
                     {copied ? <Check size={16} className="text-emerald-400" /> : <Copy size={16} />}
                   </button>
@@ -315,12 +315,12 @@ export default function Footer({ onNavigate }) {
                     className="px-4 py-2.5 bg-gradient-to-r from-[#F5A623] to-[#E8950F] text-black font-extrabold text-xs sm:text-sm rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-[#F5A623]/30 hover:brightness-110 active:scale-95"
                   >
                     <Send size={14} />
-                    <span>ইমেইল করুন</span>
+                    <span>Send Email</span>
                   </a>
                 </div>
               </div>
 
-              {/* 4. WhatsApp Full Banner Button (Professional & Clean) */}
+              {/* 4. WhatsApp Full Banner Button (100% English) */}
               <a
                 href="https://wa.me/8801768802953?text=Hello%20Humayun%20Ahmed,%20I%20saw%20your%20website%20work%20and%20want%20to%20discuss%20a%20project."
                 target="_blank"
@@ -332,8 +332,8 @@ export default function Footer({ onNavigate }) {
                     <WhatsAppIcon size={22} />
                   </div>
                   <div className="text-left">
-                    <p className="font-extrabold text-sm sm:text-base leading-tight">হোয়াটসঅ্যাপে সরাসরি চ্যাট করুন</p>
-                    <p className="text-[11px] text-emerald-100/80 font-medium mt-0.5">তাত্ক্ষণিক উত্তর পেতে নক দিন</p>
+                    <p className="font-extrabold text-sm sm:text-base leading-tight">Chat Directly on WhatsApp</p>
+                    <p className="text-[11px] text-emerald-100/80 font-medium mt-0.5">Instant response guaranteed</p>
                   </div>
                 </div>
 
