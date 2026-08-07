@@ -75,12 +75,11 @@ export default function FeatureSection() {
             viewport={{ once: true, amount: 0.15 }}
             className="lg:col-span-5 flex justify-center relative smooth-gpu"
           >
-            <div className="relative w-full max-w-md aspect-square flex items-center justify-center">
-              <div className="absolute inset-4 bg-[#F5A623] rounded-full opacity-90 blur-sm transform scale-y-75 -z-10 shadow-2xl shadow-[#F5A623]/40" />
+            <div className="relative w-full max-w-lg flex items-center justify-center">
               <img
                 src="/images/kipor-6500.png"
                 alt="Kipor KDE 6500E Portable Generator"
-                className="w-full h-auto object-contain max-h-80 drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)] z-10"
+                className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.9)] z-10"
               />
             </div>
           </motion.div>
