@@ -10,11 +10,12 @@ export default function BrandsAdmin() {
   const [formData, setFormData] = useState({
     name: '',
     logo: '',
+    logoUrl: '',
     desc: ''
   });
 
   const handleStartAdd = () => {
-    setFormData({ name: '', logo: '', desc: '' });
+    setFormData({ name: '', logo: '', logoUrl: '', desc: '' });
     setIsAdding(true);
     setEditingIndex(null);
   };
@@ -23,6 +24,7 @@ export default function BrandsAdmin() {
     setFormData({
       name: brand.name || '',
       logo: brand.logo || '',
+      logoUrl: brand.logoUrl || '',
       desc: brand.desc || ''
     });
     setEditingIndex(index);
@@ -45,7 +47,7 @@ export default function BrandsAdmin() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-[#141414] border border-white/10 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-xl">
         <div>
           <h2 className="text-lg sm:text-xl font-extrabold text-white font-heading">আন্তর্জাতিক ব্র্যান্ডসমূহ ব্যবস্থাপনা</h2>
-          <p className="text-xs text-gray-400 mt-1">ওয়েবসাইটে প্রদর্শিত জেনারেটর ব্র্যান্ডের নাম ও বিবরণ আপডেট করুন</p>
+          <p className="text-xs text-gray-400 mt-1">ওয়েবসাইটে প্রদর্শিত জেনারেটর ব্র্যান্ডের লোগো, নাম ও বিবরণ আপডেট করুন</p>
         </div>
         {!isAdding && editingIndex === null && (
           <button
@@ -88,7 +90,7 @@ export default function BrandsAdmin() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">লোগো সংক্ষিপ্ত নাম (যেমন: CAT, CUMMINS)</label>
+                <label className="block text-xs font-semibold text-gray-300 mb-1">লোগো সংক্ষিপ্ত টেক্সট (যেমন: CAT)</label>
                 <input
                   type="text"
                   placeholder="যেমন: CAT"
@@ -97,6 +99,17 @@ export default function BrandsAdmin() {
                   className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
                 />
               </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-gray-300 mb-1">অফিসিয়াল ব্র্যান্ড লোগো URL / ছবি লিঙ্ক (ঐচ্ছিক)</label>
+              <input
+                type="text"
+                placeholder="লোগো ছবি লিঙ্ক দিন (যেমন: https://upload.wikimedia.org/.../CAT_logo.png)"
+                value={formData.logoUrl}
+                onChange={(e) => setFormData({ ...formData, logoUrl: e.target.value })}
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              />
             </div>
 
             <div>
@@ -137,8 +150,12 @@ export default function BrandsAdmin() {
           <div key={index} className="bg-[#141414] border border-white/10 p-5 sm:p-6 rounded-2xl space-y-4 shadow-lg flex flex-col justify-between hover:border-[#F5A623]/30 transition-all">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-xl bg-[#0E0E0E] border border-white/10 flex items-center justify-center font-extrabold text-[#F5A623] text-sm font-heading shadow-inner">
-                  {brand.logo || brand.name.substring(0, 3)}
+                <div className="w-16 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center p-1.5 shadow-md overflow-hidden">
+                  {brand.logoUrl ? (
+                    <img src={brand.logoUrl} alt={brand.name} className="max-h-full max-w-full object-contain" />
+                  ) : (
+                    <span className="font-extrabold text-black font-heading text-xs">{brand.logo || brand.name.substring(0, 3)}</span>
+                  )}
                 </div>
                 <div className="flex items-center gap-2">
                   <button

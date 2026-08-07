@@ -198,12 +198,12 @@ export const statsData = [
 ];
 
 export const brandsData = [
-  { name: "Caterpillar (CAT)", logo: "CAT", desc: "ওয়ার্ল্ড ক্লাস হেভি পাওয়ার ডেনসিটি জেনারেটর" },
-  { name: "Cummins", logo: "CUMMINS", desc: "আমেরিকান টেকনোলজি সাউন্ডপ্রুফ জেনারেটর" },
-  { name: "Perkins", logo: "PERKINS", desc: "ব্রিটিশ অরিজিন ফাস্ট পারফরম্যান্স ইঞ্জিন" },
-  { name: "Kipor", logo: "KIPOR", desc: "পোর্টেবল সাইলেন্ট ডিজেল ও পেট্রোল মডেল" },
-  { name: "Denyo", logo: "DENYO", desc: "জাপানি অরিজিনাল হেভি টেকসই মেশিনারি" },
-  { name: "Yanmar", logo: "YANMAR", desc: "জাপান ইঞ্জিন মডিউল এনার্জি এফিশিয়েন্ট" }
+  { name: "Caterpillar (CAT)", logo: "CAT", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Caterpillar_logo.svg/320px-Caterpillar_logo.svg.png", desc: "ওয়ার্ল্ড ক্লাস হেভি পাওয়ার জেনারেটর" },
+  { name: "Cummins", logo: "CUMMINS", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Cummins_logo.svg/320px-Cummins_logo.svg.png", desc: "আমেরিকান সাউন্ডপ্রুফ টেকনোলজি" },
+  { name: "Perkins", logo: "PERKINS", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Perkins_Engines_logo.svg/320px-Perkins_Engines_logo.svg.png", desc: "ব্রিটিশ অরিজিন ফাস্ট ইঞ্জিন" },
+  { name: "Kipor", logo: "KIPOR", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Kipor_Logo.png/320px-Kipor_Logo.png", desc: "পোর্টেবল সাইলেন্ট মডেল" },
+  { name: "Denyo", logo: "DENYO", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Denyo_Logo.png/320px-Denyo_Logo.png", desc: "জাপানি অরিজিনাল হেভি মেশিনারি" },
+  { name: "Yanmar", logo: "YANMAR", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Yanmar_logo.svg/320px-Yanmar_logo.svg.png", desc: "জাপান এনার্জি এফিশিয়েন্ট মডিউল" }
 ];
 
 export const corporateClientsData = [
