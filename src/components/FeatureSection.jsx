@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Sparkles } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 const fadeLeft = {
   hidden: { opacity: 0, x: -30 },
@@ -21,7 +21,7 @@ const callouts = [
     dotX: 52,
     dotY: 18,
     linePath: 'M 52 18 L 52 5 L 68 5',
-    badgePos: 'left-[66%] top-[-16px]',
+    badgePos: 'left-1/2 -translate-x-1/2 top-[-24px] sm:left-[66%] sm:translate-x-0 sm:top-[-16px]',
   },
   {
     id: 'recoil',
@@ -31,7 +31,7 @@ const callouts = [
     dotX: 20,
     dotY: 52,
     linePath: 'M 20 52 L -4 52',
-    badgePos: 'right-[102%] top-[42%]',
+    badgePos: 'left-1 top-[42%] sm:left-auto sm:right-[102%]',
   },
   {
     id: 'frame',
@@ -41,7 +41,7 @@ const callouts = [
     dotX: 28,
     dotY: 78,
     linePath: 'M 28 78 L -4 78',
-    badgePos: 'right-[102%] top-[72%]',
+    badgePos: 'left-1 top-[72%] sm:left-auto sm:right-[102%]',
   },
   {
     id: 'engine',
@@ -51,7 +51,7 @@ const callouts = [
     dotX: 42,
     dotY: 58,
     linePath: 'M 42 58 L 42 94 L 22 94',
-    badgePos: 'right-[78%] bottom-[-42px]',
+    badgePos: 'left-2 bottom-[-32px] sm:left-auto sm:right-[78%] sm:bottom-[-42px]',
   },
   {
     id: 'panel',
@@ -61,7 +61,7 @@ const callouts = [
     dotX: 78,
     dotY: 42,
     linePath: 'M 78 42 L 104 42',
-    badgePos: 'left-[102%] top-[34%]',
+    badgePos: 'right-1 top-[34%] sm:right-auto sm:left-[102%]',
   },
   {
     id: 'outlet',
@@ -71,7 +71,7 @@ const callouts = [
     dotX: 84,
     dotY: 56,
     linePath: 'M 84 56 L 104 56',
-    badgePos: 'left-[102%] top-[58%]',
+    badgePos: 'right-1 top-[58%] sm:right-auto sm:left-[102%]',
   },
   {
     id: 'avr',
@@ -81,7 +81,7 @@ const callouts = [
     dotX: 66,
     dotY: 64,
     linePath: 'M 66 64 L 66 94 L 78 94',
-    badgePos: 'left-[78%] bottom-[-42px]',
+    badgePos: 'right-2 bottom-[-32px] sm:right-auto sm:left-[78%] sm:bottom-[-42px]',
   },
 ];
 
@@ -91,7 +91,7 @@ function GeneratorHotspots() {
 
   // Auto-tour rotation timer when user is NOT hovering
   useEffect(() => {
-    if (hoveredId !== null) return; // pause auto-tour on hover
+    if (hoveredId !== null) return;
 
     const timer = setInterval(() => {
       setAutoIndex((prevIndex) => (prevIndex + 1) % callouts.length);
@@ -100,19 +100,18 @@ function GeneratorHotspots() {
     return () => clearInterval(timer);
   }, [hoveredId]);
 
-  // Determine active item: user hover overrides auto-tour
   const activeSpot = hoveredId
     ? callouts.find((c) => c.id === hoveredId)
     : callouts[autoIndex];
 
   return (
-    <div className="relative w-full max-w-xl py-8 px-6 sm:px-14 select-none">
+    <div className="relative w-full max-w-xl py-8 px-2 sm:px-14 select-none">
       {/* Outer Wrapper */}
       <div className="relative w-full aspect-[4/3] flex items-center justify-center mb-6">
 
-        {/* SVG Laser Callout Line — Shows active item (auto or hovered) */}
+        {/* SVG Laser Callout Line — Visible on desktop (sm:) */}
         <svg
-          className="absolute inset-0 w-full h-full pointer-events-none z-20 overflow-visible"
+          className="hidden sm:block absolute inset-0 w-full h-full pointer-events-none z-20 overflow-visible"
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
         >
@@ -126,7 +125,6 @@ function GeneratorHotspots() {
           <AnimatePresence mode="wait">
             {activeSpot && (
               <g key={activeSpot.id}>
-                {/* Glowing Golden Stroke */}
                 <motion.path
                   initial={{ opacity: 0, pathLength: 0 }}
                   animate={{ opacity: 1, pathLength: 1 }}
@@ -139,7 +137,6 @@ function GeneratorHotspots() {
                   strokeLinecap="round"
                   filter="url(#laserGlow)"
                 />
-                {/* Core White Line */}
                 <motion.path
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -160,7 +157,7 @@ function GeneratorHotspots() {
         <img
           src="/images/kipor-6500.png"
           alt="Kipor KDE 6500E Generator"
-          className="w-full h-auto max-h-80 sm:max-h-96 object-contain drop-shadow-[0_25px_45px_rgba(0,0,0,0.95)] z-10 pointer-events-none"
+          className="w-full h-auto max-h-72 sm:max-h-96 object-contain drop-shadow-[0_25px_45px_rgba(0,0,0,0.95)] z-10 pointer-events-none"
           draggable={false}
         />
 
@@ -181,12 +178,11 @@ function GeneratorHotspots() {
               onClick={() => setHoveredId(spot.id)}
             >
               <div className="relative flex items-center justify-center p-2">
-                {/* Clean Solid Dot — NO blinking halo */}
                 <span
                   className={`block rounded-full border transition-all duration-300 ${
                     isActive
                       ? 'w-4 h-4 bg-white border-[#F5A623] scale-125 shadow-[0_0_15px_#F5A623]'
-                      : 'w-3 h-3 bg-[#F5A623] border-black/80 shadow-md group-hover:scale-125 group-hover:bg-white'
+                      : 'w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#F5A623] border-black/80 shadow-md group-hover:scale-125 group-hover:bg-white'
                   }`}
                 />
               </div>
@@ -205,17 +201,17 @@ function GeneratorHotspots() {
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               onMouseEnter={() => setHoveredId(activeSpot.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className={`absolute z-40 whitespace-nowrap pointer-events-auto ${activeSpot.badgePos}`}
+              className={`absolute z-40 whitespace-nowrap pointer-events-auto max-w-[85vw] ${activeSpot.badgePos}`}
             >
-              <div className="px-3.5 py-2 rounded-xl bg-[#1A1408] border border-[#F5A623] shadow-[0_0_24px_rgba(245,166,35,0.4)] flex items-center gap-2.5">
-                <span className="text-[10px] font-mono font-extrabold px-1.5 py-0.5 rounded bg-[#F5A623] text-black">
+              <div className="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-[#1A1408] border border-[#F5A623] shadow-[0_0_24px_rgba(245,166,35,0.4)] flex items-center gap-2 sm:gap-2.5">
+                <span className="text-[9px] sm:text-[10px] font-mono font-extrabold px-1.5 py-0.5 rounded bg-[#F5A623] text-black">
                   {activeSpot.code}
                 </span>
-                <div>
-                  <p className="text-xs font-extrabold font-heading text-[#F5A623]">
+                <div className="min-w-0">
+                  <p className="text-[11px] sm:text-xs font-extrabold font-heading text-[#F5A623] truncate">
                     {activeSpot.label}
                   </p>
-                  <p className="text-[10px] text-gray-300 font-semibold tracking-wide">
+                  <p className="text-[8px] sm:text-[10px] text-gray-300 font-semibold tracking-wide truncate">
                     {activeSpot.labelEn}
                   </p>
                 </div>
