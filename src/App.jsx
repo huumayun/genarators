@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
@@ -37,10 +37,31 @@ import { Phone, MessageSquare } from 'lucide-react';
 
 function MainApp() {
   const { companyDetails, isAdminLoggedIn } = useData();
-  const [activeTab, setActiveTab] = useState('home');
+
+  // Check if current URL path is /admin
+  const checkIsAdminPath = () => {
+    if (typeof window === 'undefined') return false;
+    const path = window.location.pathname.toLowerCase();
+    return path === '/admin' || path === '/admin/' || window.location.hash === '#admin';
+  };
+
+  const [activeTab, setActiveTab] = useState(() => checkIsAdminPath() ? 'admin' : 'home');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
   const [inquirySubject, setInquirySubject] = useState('');
+
+  // Handle URL history & popstate for /admin route
+  useEffect(() => {
+    const handlePopState = () => {
+      if (checkIsAdminPath()) {
+        setActiveTab('admin');
+      } else {
+        setActiveTab('home');
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const handleOpenContact = (subject = '') => {
     setInquirySubject(subject);
@@ -49,6 +70,15 @@ function MainApp() {
 
   const handleNavigate = (tabId) => {
     setActiveTab(tabId);
+    if (tabId === 'admin') {
+      if (window.location.pathname.toLowerCase() !== '/admin') {
+        window.history.pushState({}, '', '/admin');
+      }
+    } else {
+      if (window.location.pathname.toLowerCase() === '/admin') {
+        window.history.pushState({}, '', '/');
+      }
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -79,14 +109,13 @@ function MainApp() {
   return (
     <div className="min-h-screen bg-[#0E0E0E] text-white flex flex-col font-bengali">
       {/* Top Thin Contact Bar */}
-      <TopBar onOpenAdmin={() => handleNavigate('admin')} />
+      <TopBar />
 
       {/* Main Sticky Navbar */}
       <Navbar
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={handleNavigate}
         onOpenContact={() => handleOpenContact('সাধারণ ইনকোয়ারি')}
-        onOpenAdmin={() => handleNavigate('admin')}
       />
 
       {/* Main Dynamic Page Content */}

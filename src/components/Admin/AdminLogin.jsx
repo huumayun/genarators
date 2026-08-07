@@ -4,8 +4,8 @@ import { useData } from '../../context/DataContext';
 
 export default function AdminLogin({ onBackToSite }) {
   const { loginWithFirebase, loginAdmin } = useData();
-  const [email, setEmail] = useState('admin@shamimmachinery.com');
-  const [password, setPassword] = useState('shamim123456');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [usePinMode, setUsePinMode] = useState(false);
@@ -155,12 +155,6 @@ export default function AdminLogin({ onBackToSite }) {
           </form>
         )}
 
-        {/* Credentials Info Box */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-3.5 text-center text-xs space-y-1 font-sans">
-          <p className="text-[#F5A623] font-bold font-bengali">🔑 এডমিন লগইন তথ্য (Admin Credentials):</p>
-          <p className="text-gray-300">ইমেইল: <code className="text-white font-bold select-all bg-black/40 px-1.5 py-0.5 rounded">admin@shamimmachinery.com</code></p>
-          <p className="text-gray-300">পাসওয়ার্ড: <code className="text-white font-bold select-all bg-black/40 px-1.5 py-0.5 rounded">shamim123456</code></p>
-        </div>
 
         {/* Toggle Mode Button */}
         <div className="text-center pt-1">

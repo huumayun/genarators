@@ -24,17 +24,8 @@ export default function TopBar({ onOpenAdmin }) {
           </div>
         </div>
 
-        {/* Right Social & Admin Quick Button */}
+        {/* Right Social Icons */}
         <div className="flex items-center gap-4 text-gray-400">
-          <button
-            onClick={onOpenAdmin}
-            className="flex items-center gap-1 text-[#F5A623] hover:text-[#FFB627] font-semibold text-[11px] bg-white/5 hover:bg-white/10 px-2.5 py-0.5 rounded-full border border-[#F5A623]/30 transition-all"
-            title="এডমিন প্যানেল (Admin Panel)"
-          >
-            <ShieldCheck size={12} />
-            <span>এডমিন প্যানেল</span>
-          </button>
-
           <a href="#" className="hover:text-[#F5A623] transition-colors" aria-label="Facebook">
             <Facebook size={14} />
           </a>
