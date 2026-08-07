@@ -223,8 +223,8 @@ export function DataProvider({ children }) {
   }, [isAdminLoggedIn]);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.ADMIN_PIN, adminPin);
-  }, [adminPin]);
+    localStorage.setItem(STORAGE_KEYS.ADMIN_PIN, adminPinHash);
+  }, [adminPinHash]);
 
   // Actions for Products
   const addProduct = (newProduct) => {
@@ -496,7 +496,7 @@ export function DataProvider({ children }) {
     ownerAndTeam,
     inquiries,
     isAdminLoggedIn,
-    adminPin,
+    adminPinHash,
     // Methods
     addProduct,
     updateProduct,

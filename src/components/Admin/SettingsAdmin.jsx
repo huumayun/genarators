@@ -3,7 +3,7 @@ import { Save, CheckCircle2, Phone, Mail, MapPin, Clock, KeyRound, RotateCcw } f
 import { useData } from '../../context/DataContext';
 
 export default function SettingsAdmin() {
-  const { companyDetails, updateCompanyDetails, adminPin, updateAdminPin, resetToDefaults, forceSyncAllToFirestore } = useData();
+  const { companyDetails, updateCompanyDetails, loginAdmin, updateAdminPin, resetToDefaults, forceSyncAllToFirestore } = useData();
   const [formData, setFormData] = useState(companyDetails);
   const [pinData, setPinData] = useState({ currentPin: '', newPin: '' });
   const [savedSuccess, setSavedSuccess] = useState(false);
@@ -32,9 +32,10 @@ export default function SettingsAdmin() {
     setTimeout(() => setSavedSuccess(false), 4000);
   };
 
-  const handleSavePin = (e) => {
+  const handleSavePin = async (e) => {
     e.preventDefault();
-    if (pinData.currentPin !== adminPin && pinData.currentPin !== 'admin') {
+    const isCurrentValid = await loginAdmin(pinData.currentPin);
+    if (!isCurrentValid) {
       setPinError('বর্তমান পিনটি সঠিক নয়!');
       return;
     }
@@ -42,7 +43,7 @@ export default function SettingsAdmin() {
       setPinError('নতুন পিনটি কমপক্ষে ৪ অক্ষরের হতে হবে!');
       return;
     }
-    updateAdminPin(pinData.newPin);
+    await updateAdminPin(pinData.newPin);
     setPinSuccess(true);
     setPinError('');
     setPinData({ currentPin: '', newPin: '' });
