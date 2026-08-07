@@ -12,63 +12,79 @@ const fadeRight = {
   show: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } }
 };
 
-// Generator part hotspots — position as % of image width/height
-const hotspots = [
+// Generator parts with HUD callout line coordinates (% of box width/height)
+const callouts = [
+  {
+    id: 'tank',
+    label: 'জ্বালানি ট্যাংক',
+    labelEn: 'Fuel Tank',
+    dotX: 52,
+    dotY: 18,
+    badgeX: 52,
+    badgeY: 2,
+    linePath: 'M 52 18 L 52 7 L 62 7',
+    badgeAlign: 'left',
+    badgePos: 'left-[62%] top-[-8px]',
+  },
   {
     id: 'recoil',
     label: 'রিকয়েল স্টার্টার',
     labelEn: 'Recoil Starter',
-    x: 18,   // % from left
-    y: 52,   // % from top
-    side: 'right'
+    dotX: 20,
+    dotY: 52,
+    linePath: 'M 20 52 L 4 52',
+    badgePos: 'right-[98%] top-[45%]',
+    badgeAlign: 'right',
   },
   {
     id: 'engine',
     label: 'ডিজেল ইঞ্জিন',
     labelEn: 'Diesel Engine',
-    x: 42,
-    y: 58,
-    side: 'right'
-  },
-  {
-    id: 'tank',
-    label: 'জ্বালানি ট্যাংক',
-    labelEn: 'Fuel Tank',
-    x: 50,
-    y: 18,
-    side: 'right'
+    dotX: 42,
+    dotY: 58,
+    linePath: 'M 42 58 L 42 85 L 28 85',
+    badgePos: 'right-[74%] bottom-[-18px]',
+    badgeAlign: 'right',
   },
   {
     id: 'panel',
     label: 'কন্ট্রোল প্যানেল',
     labelEn: 'Control Panel',
-    x: 78,
-    y: 45,
-    side: 'left'
-  },
-  {
-    id: 'avr',
-    label: 'এভিআর (AVR)',
-    labelEn: 'Voltage Regulator',
-    x: 65,
-    y: 62,
-    side: 'left'
-  },
-  {
-    id: 'frame',
-    label: 'স্টিল ফ্রেম',
-    labelEn: 'Steel Frame',
-    x: 30,
-    y: 80,
-    side: 'right'
+    dotX: 78,
+    dotY: 42,
+    linePath: 'M 78 42 L 96 42',
+    badgePos: 'left-[98%] top-[35%]',
+    badgeAlign: 'left',
   },
   {
     id: 'outlet',
     label: 'পাওয়ার আউটলেট',
     labelEn: 'Power Outlet',
-    x: 85,
-    y: 55,
-    side: 'left'
+    dotX: 84,
+    dotY: 56,
+    linePath: 'M 84 56 L 96 68',
+    badgePos: 'left-[98%] top-[62%]',
+    badgeAlign: 'left',
+  },
+  {
+    id: 'avr',
+    label: 'এভিআর (AVR)',
+    labelEn: 'Voltage Regulator',
+    dotX: 66,
+    dotY: 64,
+    linePath: 'M 66 64 L 66 88 L 78 88',
+    badgePos: 'left-[78%] bottom-[-22px]',
+    badgeAlign: 'left',
+  },
+  {
+    id: 'frame',
+    label: 'হেভি স্টিল ফ্রেম',
+    labelEn: 'Heavy Duty Frame',
+    dotX: 28,
+    dotY: 78,
+    linePath: 'M 28 78 L 10 78 L 10 90',
+    badgePos: 'left-[0%] bottom-[-26px]',
+    badgeAlign: 'left',
   },
 ];
 
@@ -76,92 +92,153 @@ function GeneratorHotspots() {
   const [activeHotspot, setActiveHotspot] = useState(null);
 
   return (
-    <div className="relative w-full max-w-lg select-none">
-      {/* Generator Image */}
-      <img
-        src="/images/kipor-6500.png"
-        alt="Kipor KDE 6500E Generator — ইন্টারেক্টিভ পার্ট গাইড"
-        className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.9)] z-10 pointer-events-none"
-        draggable={false}
-      />
+    <div className="relative w-full max-w-xl py-6 px-4 sm:px-12 select-none">
+      {/* Outer Wrapper for Callout positioning */}
+      <div className="relative w-full aspect-[4/3] flex items-center justify-center">
 
-      {/* Hotspot Markers */}
-      {hotspots.map((spot) => {
-        const isActive = activeHotspot === spot.id;
-        return (
-          <div
-            key={spot.id}
-            className="absolute z-20"
-            style={{ left: `${spot.x}%`, top: `${spot.y}%`, transform: 'translate(-50%, -50%)' }}
-            onMouseEnter={() => setActiveHotspot(spot.id)}
-            onMouseLeave={() => setActiveHotspot(null)}
-          >
-            {/* Pulsing dot */}
-            <div className="relative cursor-crosshair">
-              {/* Outer pulse ring */}
-              <span
-                className={`absolute inset-0 rounded-full bg-[#F5A623] transition-all duration-300 ${
-                  isActive ? 'scale-[2.5] opacity-0' : 'scale-[1.8] opacity-30 animate-ping'
-                }`}
-                style={{ width: 12, height: 12, top: 0, left: 0 }}
-              />
-              {/* Inner dot */}
-              <span
-                className={`relative block rounded-full border-2 transition-all duration-200 ${
-                  isActive
-                    ? 'w-4 h-4 bg-white border-white scale-125 shadow-lg shadow-white/30'
-                    : 'w-3 h-3 bg-[#F5A623] border-[#F5A623]'
-                }`}
-              />
-            </div>
+        {/* SVG Connecting Callout Lines */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none z-20"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="lineGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#F5A623" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#FFC857" stopOpacity="0.4" />
+            </linearGradient>
+            <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="0.8" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
 
-            {/* Tooltip */}
-            <AnimatePresence>
-              {isActive && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.85, y: 5 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.85, y: 5 }}
-                  transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                  className={`absolute z-30 whitespace-nowrap pointer-events-none ${
-                    spot.side === 'left'
-                      ? 'right-5 top-1/2 -translate-y-1/2'
-                      : 'left-5 top-1/2 -translate-y-1/2'
+          {callouts.map((item) => {
+            const isActive = activeHotspot === item.id;
+            return (
+              <g key={item.id}>
+                {/* Background Leader Line */}
+                <path
+                  d={item.linePath}
+                  fill="none"
+                  stroke={isActive ? '#F5A623' : '#F5A623'}
+                  strokeWidth={isActive ? '0.8' : '0.4'}
+                  strokeDasharray={isActive ? 'none' : '1.5 1.5'}
+                  opacity={isActive ? 1 : 0.6}
+                  filter={isActive ? 'url(#glowEffect)' : undefined}
+                  className="transition-all duration-300"
+                />
+
+                {/* Animated Light Pulse on Line */}
+                {isActive && (
+                  <path
+                    d={item.linePath}
+                    fill="none"
+                    stroke="#FFFFFF"
+                    strokeWidth="1"
+                    strokeDasharray="2 6"
+                    className="animate-pulse"
+                  />
+                )}
+              </g>
+            );
+          })}
+        </svg>
+
+        {/* Generator Main Image */}
+        <img
+          src="/images/kipor-6500.png"
+          alt="Kipor KDE 6500E Generator — ইন্টারেক্টিভ পার্টস"
+          className="w-full h-auto max-h-80 sm:max-h-96 object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,0.95)] z-10 pointer-events-none"
+          draggable={false}
+        />
+
+        {/* Callout Hotspot Dots & HUD Badges */}
+        {callouts.map((spot, idx) => {
+          const isActive = activeHotspot === spot.id;
+          return (
+            <React.Fragment key={spot.id}>
+              {/* Dot on Generator Part */}
+              <div
+                className="absolute z-30 cursor-pointer group"
+                style={{
+                  left: `${spot.dotX}%`,
+                  top: `${spot.dotY}%`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+                onMouseEnter={() => setActiveHotspot(spot.id)}
+                onMouseLeave={() => setActiveHotspot(null)}
+                onClick={() => setActiveHotspot(isActive ? null : spot.id)}
+              >
+                <div className="relative flex items-center justify-center">
+                  {/* Ping Animation Ring */}
+                  <motion.span
+                    initial={{ scale: 1, opacity: 0.4 }}
+                    animate={{ scale: [1, 2.2, 1], opacity: [0.4, 0, 0.4] }}
+                    transition={{ repeat: Infinity, duration: 2.5, delay: idx * 0.3 }}
+                    className="absolute w-4 h-4 rounded-full bg-[#F5A623]"
+                  />
+                  {/* Inner Solid Dot */}
+                  <span
+                    className={`relative block rounded-full border-2 transition-all duration-300 ${
+                      isActive
+                        ? 'w-4 h-4 bg-white border-[#F5A623] scale-125 shadow-[0_0_12px_#F5A623]'
+                        : 'w-3 h-3 bg-[#F5A623] border-black shadow-md'
+                    }`}
+                  />
+                </div>
+              </div>
+
+              {/* Connected Callout Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 5 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
+                onMouseEnter={() => setActiveHotspot(spot.id)}
+                onMouseLeave={() => setActiveHotspot(null)}
+                onClick={() => setActiveHotspot(isActive ? null : spot.id)}
+                className={`absolute z-30 cursor-pointer whitespace-nowrap ${spot.badgePos}`}
+              >
+                <div
+                  className={`px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl border transition-all duration-300 flex items-center gap-2 ${
+                    isActive
+                      ? 'bg-[#1A1305] border-[#F5A623] shadow-[0_0_20px_rgba(245,166,35,0.4)] scale-105'
+                      : 'bg-[#0E0E0E]/90 border-white/15 hover:border-[#F5A623]/60 shadow-lg hover:bg-[#141414]'
                   }`}
                 >
-                  <div className="bg-[#0E0E0E] border border-[#F5A623] rounded-xl px-3 py-2 shadow-2xl shadow-[#F5A623]/20">
-                    <p className="text-[#F5A623] font-extrabold text-xs font-heading leading-tight">
+                  <span
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      isActive ? 'bg-[#F5A623] animate-ping' : 'bg-[#F5A623]'
+                    }`}
+                  />
+                  <div>
+                    <p
+                      className={`text-[11px] sm:text-xs font-extrabold font-heading transition-colors ${
+                        isActive ? 'text-[#F5A623]' : 'text-white'
+                      }`}
+                    >
                       {spot.label}
                     </p>
-                    <p className="text-gray-400 text-[10px] font-medium mt-0.5">
+                    <p className="text-[9px] sm:text-[10px] text-gray-400 font-semibold tracking-wide">
                       {spot.labelEn}
                     </p>
                   </div>
-                  {/* Arrow */}
-                  <div
-                    className={`absolute top-1/2 -translate-y-1/2 w-0 h-0 ${
-                      spot.side === 'left'
-                        ? 'right-[-6px] border-l-[6px] border-l-[#F5A623] border-y-[5px] border-y-transparent'
-                        : 'left-[-6px] border-r-[6px] border-r-[#F5A623] border-y-[5px] border-y-transparent'
-                    }`}
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        );
-      })}
+                </div>
+              </motion.div>
+            </React.Fragment>
+          );
+        })}
 
-      {/* Bottom hint */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="text-center text-[10px] text-gray-500 mt-2 font-bengali"
-      >
-        ✦ জেনারেটরের যেকোনো অংশে হোভার করুন
-      </motion.p>
+      </div>
+
+      {/* Bottom Hint */}
+      <div className="text-center mt-6">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#141414] border border-white/10 text-[11px] text-gray-300 font-bengali">
+          <span className="w-2 h-2 rounded-full bg-[#F5A623] animate-pulse" />
+          <span>যেকোনো পার্টস হোভার বা টাচ করে বিস্তারিত জানুন</span>
+        </span>
+      </div>
     </div>
   );
 }
@@ -175,9 +252,9 @@ export default function FeatureSection() {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-[#0E0E0E] relative border-b border-white/5">
+    <section className="py-16 lg:py-24 bg-[#0E0E0E] relative border-b border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
           {/* Left Text & Checkmarks */}
           <motion.div
@@ -185,7 +262,7 @@ export default function FeatureSection() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.15 }}
-            className="lg:col-span-7 space-y-6 smooth-gpu"
+            className="lg:col-span-6 space-y-6 smooth-gpu"
           >
             <h2 className="text-2xl sm:text-4xl font-extrabold text-white leading-tight font-heading">
               শক্তিশালী জেনারেটর, <br />
@@ -215,13 +292,13 @@ export default function FeatureSection() {
             </div>
           </motion.div>
 
-          {/* Right — Interactive Generator */}
+          {/* Right — Tech Callout HUD Interactive Generator */}
           <motion.div
             variants={fadeRight}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.15 }}
-            className="lg:col-span-5 flex justify-center smooth-gpu"
+            className="lg:col-span-6 flex justify-center smooth-gpu overflow-visible"
           >
             <GeneratorHotspots />
           </motion.div>
