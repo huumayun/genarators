@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Star, MessageSquare } from 'lucide-react';
 import { useData } from '../context/DataContext';
 
-export default function Testimonials({ onNavigateAbout }) {
+export default function Testimonials({ onWriteReview }) {
   const { testimonials } = useData();
   return (
     <section className="py-16 lg:py-20 bg-black/40 backdrop-blur-sm relative border-b border-white/5">
@@ -41,7 +41,7 @@ export default function Testimonials({ onNavigateAbout }) {
 
                 {/* Review Text */}
                 <p className="text-gray-300 text-sm sm:text-base leading-relaxed italic">
-                  "{review.quote}"
+                  &ldquo;{review.quote}&rdquo;
                 </p>
               </div>
 
@@ -71,11 +71,11 @@ export default function Testimonials({ onNavigateAbout }) {
         {/* Bottom Center Button */}
         <div className="text-center pt-10">
           <button
-            onClick={onNavigateAbout}
+            onClick={onWriteReview}
             className="inline-flex items-center gap-2 btn-glass-gold font-bold text-sm sm:text-base px-8 py-3 rounded-full transition-all duration-200 shadow-md hover:scale-[1.03] active:scale-95"
           >
             <MessageSquare size={16} />
-            <span>আরও রিভিউ দেখুন</span>
+            <span>আপনার রিভিউ লিখুন</span>
           </button>
         </div>
 

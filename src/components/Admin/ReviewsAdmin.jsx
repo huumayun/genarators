@@ -243,7 +243,7 @@ export default function ReviewsAdmin() {
                 </div>
               </div>
 
-              <p className="text-xs text-gray-300 italic leading-relaxed">"{review.quote}"</p>
+              <p className="text-xs text-gray-300 italic leading-relaxed">&ldquo;{review.quote}&rdquo;</p>
 
               <div className="flex items-center gap-3 pt-3 border-t border-white/10">
                 <img

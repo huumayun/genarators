@@ -33,6 +33,8 @@ import InquiryModal from './components/Modals/InquiryModal';
 // Context
 import { DataProvider, useData } from './context/DataContext';
 
+// Icons & Floating Actions
+import { Phone } from 'lucide-react';
 import WhatsAppIcon from './components/WhatsAppIcon';
 
 function MainApp() {
@@ -168,7 +170,7 @@ function MainApp() {
               />
               <TeamSection />
               <Testimonials
-                onNavigateAbout={() => handleNavigate('about')}
+                onWriteReview={() => handleNavigate('review')}
               />
               <StatsBar />
               <Newsletter />
@@ -218,17 +220,17 @@ function MainApp() {
       <Footer onNavigate={handleNavigate} />
 
       {/* Floating Action Buttons (Fixed Bottom Right) */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
         {/* WhatsApp Floating Button */}
         <a
           href={`https://wa.me/${companyDetails.whatsapp}?text=${encodeURIComponent('হ্যালো, মেসার্স শামীম মেশিনারিজ থেকে জেনারেটর সংক্রান্ত ইনকোয়ারির জন্য নক দিচ্ছি।')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-20 sm:bottom-6 right-6 z-50 w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 hover:scale-110 active:scale-95 transition-all smooth-gpu"
+          className="group w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 hover:scale-110 active:scale-95 transition-all smooth-gpu relative"
           aria-label="WhatsApp Us"
         >
           <WhatsAppIcon size={28} />
-          <span className="absolute right-14 bg-black/90 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          <span className="absolute right-16 bg-black/90 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             হোয়াটসঅ্যাপ করুন
           </span>
         </a>
@@ -236,10 +238,10 @@ function MainApp() {
         {/* Quick Phone Call Floating Button */}
         <a
           href={`tel:${companyDetails.phone}`}
-          className="w-13 h-13 rounded-full bg-[#F5A623] hover:bg-[#FFB627] text-black flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-200 group relative"
+          className="group w-12 h-12 rounded-full bg-[#F5A623] hover:bg-[#FFB627] text-black flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-200 relative"
           aria-label="Call Us"
         >
-          <Phone size={22} />
+          <Phone size={20} />
           <span className="absolute right-14 bg-black/90 text-[#F5A623] text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             সরাসরি কল দিন: {companyDetails.phone}
           </span>

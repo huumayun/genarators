@@ -177,7 +177,7 @@ export default function Footer({ onNavigate }) {
         {/* Bottom Copyright Strip */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-semibold text-black/80">
           <div>
-            © 2024 {companyDetails.name}। সর্বস্বত্ব সংরক্ষিত।
+            © {new Date().getFullYear()} {companyDetails.name}। সর্বস্বত্ব সংরক্ষিত।
           </div>
 
           <div className="flex items-center gap-4">
