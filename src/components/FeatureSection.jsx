@@ -2,6 +2,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 
+// Shared animation variants for clean reuse
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+};
+
+const fadeLeft = {
+  hidden: { opacity: 0, x: -30 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+};
+
+const fadeRight = {
+  hidden: { opacity: 0, x: 40, scale: 0.95 },
+  show: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } }
+};
+
 export default function FeatureSection() {
   const checkItems = [
     "নতুন ও পুরাতন জেনারেটর বিক্রয়",
@@ -17,10 +33,10 @@ export default function FeatureSection() {
 
           {/* Left Text & Checkmarks */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
             className="lg:col-span-7 space-y-6 smooth-gpu"
           >
             <h2 className="text-2xl sm:text-4xl font-extrabold text-white leading-tight font-heading">
@@ -36,10 +52,10 @@ export default function FeatureSection() {
               {checkItems.map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, delay: 0.15 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
                   className="flex items-center gap-3 smooth-gpu"
                 >
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#F5A623] flex items-center justify-center text-black font-bold">
@@ -51,18 +67,16 @@ export default function FeatureSection() {
             </div>
           </motion.div>
 
-          {/* Right Image (Kipor Generator on Yellow Studio Circle Base) */}
+          {/* Right Image */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
             className="lg:col-span-5 flex justify-center relative smooth-gpu"
           >
-            {/* Yellow Background Ellipse Platform matching design screenshot */}
             <div className="relative w-full max-w-md aspect-square flex items-center justify-center">
               <div className="absolute inset-4 bg-[#F5A623] rounded-full opacity-90 blur-sm transform scale-y-75 -z-10 shadow-2xl shadow-[#F5A623]/40" />
-
               <img
                 src="/images/kipor-6500.png"
                 alt="Kipor KDE 6500E Portable Generator"

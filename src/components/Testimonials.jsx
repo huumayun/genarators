@@ -10,29 +10,35 @@ export default function Testimonials({ onWriteReview }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto mb-12 space-y-3"
+        >
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white font-heading">
             আমাদের গ্রাহকরা <span className="text-[#F5A623]">যা বলছেন</span>
           </h2>
           <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
             গ্রাহকদের সন্তুষ্টিই আমাদের সবচেয়ে বড় অর্জন।
           </p>
-        </div>
+        </motion.div>
 
-        {/* 2 Testimonial Cards Grid */}
+        {/* Testimonial Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {testimonials.map((review, index) => (
             <motion.div
               key={review.id}
-              initial={{ opacity: 0, scale: 0.92, y: 15 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.45, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.55, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
               className="bg-[#1A1A1A] border border-white/10 p-6 sm:p-8 rounded-2xl space-y-5 flex flex-col justify-between hover:border-[#F5A623]/30 transition-colors shadow-lg smooth-gpu"
             >
               <div className="space-y-4">
-                {/* 5 Yellow Stars */}
+                {/* Stars */}
                 <div className="flex items-center gap-1">
                   {[...Array(review.rating)].map((_, i) => (
                     <Star key={i} size={18} className="fill-[#F5A623] text-[#F5A623]" />
@@ -45,7 +51,7 @@ export default function Testimonials({ onWriteReview }) {
                 </p>
               </div>
 
-              {/* Avatar + Author Details */}
+              {/* Avatar + Author */}
               <div className="flex items-center gap-3.5 pt-4 border-t border-white/10">
                 <img
                   src={review.image}
@@ -68,8 +74,14 @@ export default function Testimonials({ onWriteReview }) {
           ))}
         </div>
 
-        {/* Bottom Center Button */}
-        <div className="text-center pt-10">
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center pt-10"
+        >
           <button
             onClick={onWriteReview}
             className="inline-flex items-center gap-2 btn-glass-gold font-bold text-sm sm:text-base px-8 py-3 rounded-full transition-all duration-200 shadow-md hover:scale-[1.03] active:scale-95"
@@ -77,7 +89,7 @@ export default function Testimonials({ onWriteReview }) {
             <MessageSquare size={16} />
             <span>আপনার রিভিউ লিখুন</span>
           </button>
-        </div>
+        </motion.div>
 
       </div>
     </section>

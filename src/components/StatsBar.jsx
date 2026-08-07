@@ -15,7 +15,6 @@ export default function StatsBar() {
     }
   };
 
-  // Convert numbers to Bengali digits
   const toBengaliNumber = (num) => {
     const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
     return num.toString().replace(/\d/g, (digit) => bengaliDigits[digit]);
@@ -29,16 +28,22 @@ export default function StatsBar() {
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.88, y: 15 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.45, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.55, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.06, transition: { duration: 0.2 } }}
               className="flex flex-col items-center text-center p-4 bg-[#141414] border border-white/5 rounded-2xl smooth-gpu"
             >
-              <div className="w-12 h-12 rounded-full bg-[#F5A623]/10 border border-[#F5A623]/20 flex items-center justify-center mb-3">
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.1, ease: [0.34, 1.56, 0.64, 1] }}
+                className="w-12 h-12 rounded-full bg-[#F5A623]/10 border border-[#F5A623]/20 flex items-center justify-center mb-3"
+              >
                 {getIcon(stat.icon)}
-              </div>
+              </motion.div>
 
               <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#F5A623] font-heading tracking-tight">
                 {toBengaliNumber(stat.value)}{stat.suffix}

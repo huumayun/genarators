@@ -12,26 +12,30 @@ export default function ServiceBanner({ onOpenServiceBooking }) {
           {/* Background Technician Repair Image */}
           <div
             className="absolute inset-0 bg-cover bg-right sm:bg-center z-0"
-            style={{
-              backgroundImage: `url('/images/technician.png')`
-            }}
+            style={{ backgroundImage: `url('/images/technician.png')` }}
           />
 
-          {/* Dark Gradient Overlay for perfect text legibility */}
+          {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent sm:to-black/30 z-10" />
 
-          {/* Content Left Column */}
+          {/* Content */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="relative z-20 p-8 sm:p-12 lg:p-16 max-w-2xl space-y-5 smooth-gpu"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5A623]/20 border border-[#F5A623]/40 text-[#F5A623] text-xs font-semibold">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5A623]/20 border border-[#F5A623]/40 text-[#F5A623] text-xs font-semibold"
+            >
               <Wrench size={14} />
               <span>ইমার্জেন্সি ও রুটিন সার্ভিসিং</span>
-            </div>
+            </motion.div>
 
             <h2 className="text-2xl sm:text-4xl font-extrabold text-white font-heading leading-tight">
               প্রফেশনাল সার্ভিস <br />
@@ -42,7 +46,13 @@ export default function ServiceBanner({ onOpenServiceBooking }) {
               আমাদের দক্ষ টেকনিশিয়ান টিম দিচ্ছে জেনারেটরের নিয়মিত সার্ভিস, মেরামত ও রক্ষণাবেক্ষণ সেবা। নিশ্চিত করুন আপনার জেনারেটরের দীর্ঘস্থায়ী পারফরম্যান্স।
             </p>
 
-            <div className="pt-2">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="pt-2"
+            >
               <button
                 onClick={onOpenServiceBooking}
                 className="btn-glass-gold font-bold text-sm sm:text-base px-7 py-3.5 rounded-full transition-all duration-200 shadow-lg hover:scale-[1.03] active:scale-95 flex items-center gap-2"
@@ -50,11 +60,10 @@ export default function ServiceBanner({ onOpenServiceBooking }) {
                 <span>সার্ভিস বুক করুন</span>
                 <ArrowRight size={18} />
               </button>
-            </div>
+            </motion.div>
           </motion.div>
 
         </div>
-
       </div>
     </section>
   );

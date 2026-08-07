@@ -21,36 +21,42 @@ export default function ClientProjects({ onOpenContact }) {
     <section className="py-16 lg:py-24 bg-[#0E0E0E] relative border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        {/* Section Heading — fade up */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto mb-12 space-y-3"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F5A623]/15 text-[#F5A623] border border-[#F5A623]/30 text-xs font-semibold">
             <Building2 size={14} />
-            <span>কর্পোরেট ক্লায়েন্ট ও প্রজেক্ট পোর্টফোলিও</span>
+            <span>কর্পোরেট ক্লায়েন্ট ও প্রজেক্ট পোর্টফোলিও</span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white font-heading">
-            যেসকল বড় বড় প্রতিষ্ঠানে <span className="text-[#F5A623]">আমরা জেনারেটর দিয়েছি</span>
+            যেসকল বড় বড় প্রতিষ্ঠানে <span className="text-[#F5A623]">আমরা জেনারেটর দিয়েছি</span>
           </h2>
 
           <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
             বাংলাদেশের শীর্ষস্থানীয় ইন্ডাস্ট্রিয়াল গ্রুপ, হাসপাতাল, গার্মেন্টস ও কমার্শিয়াল মেগা প্রজেক্টে আমাদের জেনারেটর সফলভাবে সার্ভিস দিচ্ছে।
           </p>
-        </div>
+        </motion.div>
 
-        {/* Client Cards Grid */}
+        {/* Client Cards Grid — staggered with alternating slight x offset */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {corporateClients.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, scale: 0.92, y: 15 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.45, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              initial={{ opacity: 0, y: 40, scale: 0.94 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.08 }}
+              transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.02, y: -3, transition: { duration: 0.2 } }}
               className="bg-[#141414] border border-white/10 p-6 rounded-2xl flex flex-col justify-between hover:border-[#F5A623]/50 transition-colors duration-300 shadow-xl group hover:shadow-[#F5A623]/10 smooth-gpu"
             >
               <div className="space-y-4">
-                {/* Header Badge */}
+                {/* Header */}
                 <div className="flex items-center justify-between">
                   <div className="w-12 h-12 rounded-xl bg-[#0E0E0E] border border-white/10 flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform">
                     {getIcon(project.icon)}
@@ -70,7 +76,7 @@ export default function ClientProjects({ onOpenContact }) {
                   </p>
                 </div>
 
-                {/* Generator Details Box */}
+                {/* Generator Details */}
                 <div className="bg-[#0E0E0E] p-3.5 rounded-xl border border-white/5 space-y-2 text-xs">
                   <div className="flex items-start gap-2 text-gray-200">
                     <Zap size={14} className="text-[#F5A623] shrink-0 mt-0.5" />
@@ -105,12 +111,18 @@ export default function ClientProjects({ onOpenContact }) {
         </div>
 
         {/* Bottom CTA Bar */}
-        <div className="mt-12 text-center bg-[#141414] border border-[#F5A623]/30 p-8 rounded-3xl space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-12 text-center bg-[#141414] border border-[#F5A623]/30 p-8 rounded-3xl space-y-4"
+        >
           <h3 className="text-xl sm:text-2xl font-bold text-white font-heading">
-            আপনার প্রতিষ্ঠান বা প্রজেক্টের জন্য জেনারেটর প্রয়োজন?
+            আপনার প্রতিষ্ঠান বা প্রজেক্টের জন্য জেনারেটর প্রয়োজন?
           </h3>
           <p className="text-gray-300 text-xs sm:text-sm max-w-xl mx-auto">
-            হেভি ডিউটি ইন্ডাস্ট্রিয়াল জেনারেটর, সাউন্ডপ্রুফ ক্যানোপি এবং পার্সোনালাইজড কোটেশনের জন্য আমাদের বিশেষজ্ঞদের সাথে কথা বলুন।
+            হেভি ডিউটি ইন্ডাস্ট্রিয়াল জেনারেটর, সাউন্ডপ্রুফ ক্যানোপি এবং পার্সোনালাইজড কোটেশনের জন্য আমাদের বিশেষজ্ঞদের সাথে কথা বলুন।
           </p>
           <button
             onClick={() => onOpenContact('ইন্ডাস্ট্রিয়াল জেনারেটর কোটেশন')}
@@ -119,7 +131,7 @@ export default function ClientProjects({ onOpenContact }) {
             <PhoneCall size={18} />
             <span>প্রজেক্টের জন্য কোটেশন নিন</span>
           </button>
-        </div>
+        </motion.div>
 
       </div>
     </section>

@@ -12,7 +12,13 @@ export default function TeamSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto space-y-3"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F5A623]/15 text-[#F5A623] border border-[#F5A623]/30 text-xs font-semibold">
             <UserCheck size={14} />
             <span>পরিচালনা পর্ষদ ও সার্ভিস টিম</span>
@@ -23,16 +29,16 @@ export default function TeamSection() {
           </h2>
 
           <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-            অভিজ্ঞ মেকানিক্যাল ইঞ্জিনিয়ার ও নিবেদিতপ্রাণ সার্ভিস টিমের মাধ্যমে আমরা ১০০% কোয়ালিটি সেবা নিশ্চিত করি।
+            অভিজ্ঞ মেকানিক্যাল ইঞ্জিনিয়ার ও নিবেদিতপ্রাণ সার্ভিস টিমের মাধ্যমে আমরা ১০০% কোয়ালিটি সেবা নিশ্চিত করি।
           </p>
-        </div>
+        </motion.div>
 
         {/* Founder & Owner Spotlight Card */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 40, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="bg-[#141414] border-2 border-[#F5A623]/40 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden smooth-gpu"
         >
           {/* Subtle Glow */}
@@ -41,7 +47,13 @@ export default function TeamSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
 
             {/* Owner Avatar & Badges */}
-            <div className="lg:col-span-4 flex flex-col items-center text-center space-y-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.12 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.34, 1.2, 0.64, 1] }}
+              className="lg:col-span-4 flex flex-col items-center text-center space-y-4"
+            >
               <div className="relative">
                 <img
                   src={owner.image}
@@ -67,17 +79,23 @@ export default function TeamSection() {
                   {owner.role}
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Owner Quote & Details */}
-            <div className="lg:col-span-8 space-y-5 border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-8">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.12 }}
+              transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:col-span-8 space-y-5 border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-8"
+            >
               <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full">
                 <HeartHandshake size={14} />
                 <span>প্রতিষ্ঠাতার বার্তা</span>
               </div>
 
               <blockquote className="text-gray-200 text-sm sm:text-base leading-relaxed italic border-l-2 border-[#F5A623] pl-4">
-                "{owner.message}"
+                &ldquo;{owner.message}&rdquo;
               </blockquote>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
@@ -94,40 +112,50 @@ export default function TeamSection() {
                 <div className="flex items-center gap-3 bg-[#0E0E0E] p-3.5 rounded-xl border border-white/10">
                   <Mail size={18} className="text-[#F5A623]" />
                   <div>
-                    <span className="text-[11px] text-gray-400 block">অফিসিয়াল ইমেইল</span>
+                    <span className="text-[11px] text-gray-400 block">অফিসিয়াল ইমেইল</span>
                     <a href={`mailto:${owner.email}`} className="text-xs font-bold text-white hover:text-[#F5A623]">
                       {owner.email}
                     </a>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </motion.div>
 
-        {/* Employees & Team Grid */}
+        {/* Team Members Grid */}
         <div className="space-y-6">
-          <h3 className="text-xl font-extrabold text-white font-heading text-center sm:text-left">
+          <motion.h3
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="text-xl font-extrabold text-white font-heading text-center sm:text-left"
+          >
             দক্ষ মেকানিক্যাল ও সার্ভিস টিমের সদস্যগণ
-          </h3>
+          </motion.h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((member, index) => (
               <motion.div
                 key={member.id}
-                initial={{ opacity: 0, scale: 0.92, y: 15 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.45, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ scale: 1.025, transition: { duration: 0.2 } }}
+                initial={{ opacity: 0, y: 35, scale: 0.93 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.08 }}
+                transition={{ duration: 0.55, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.2 } }}
                 className="bg-[#141414] border border-white/10 p-5 rounded-2xl flex flex-col justify-between hover:border-[#F5A623]/40 transition-colors shadow-lg group smooth-gpu"
               >
                 <div className="space-y-4 text-center">
-                  <img
+                  <motion.img
                     src={member.image}
                     alt={member.name}
                     className="w-20 h-20 rounded-full mx-auto object-cover border-2 border-[#F5A623] shadow-md group-hover:scale-105 transition-transform"
+                    initial={{ scale: 0.7, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true, amount: 0.08 }}
+                    transition={{ duration: 0.5, delay: 0.15 + index * 0.1, ease: [0.34, 1.4, 0.64, 1] }}
                   />
 
                   <div>
