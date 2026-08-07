@@ -357,7 +357,7 @@ export default function Footer({ onNavigate }) {
                 <div className="space-y-0.5 border-r border-white/10 px-2">
                   <p className="text-sm sm:text-base font-extrabold text-[#F5A623] flex items-center justify-center gap-1">
                     <Star size={14} className="fill-[#F5A623]" />
-                    <span>50+</span>
+                    <span>30+</span>
                   </p>
                   <p className="text-[9px] sm:text-[10px] text-gray-400 font-semibold truncate">
                     Happy Clients
@@ -367,7 +367,7 @@ export default function Footer({ onNavigate }) {
                 <div className="space-y-0.5 pl-2">
                   <p className="text-sm sm:text-base font-extrabold text-emerald-400 flex items-center justify-center gap-1">
                     <Layers size={14} />
-                    <span>100+</span>
+                    <span>40+</span>
                   </p>
                   <p className="text-[9px] sm:text-[10px] text-gray-400 font-semibold truncate">
                     Projects Done
