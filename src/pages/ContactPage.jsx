@@ -202,17 +202,36 @@ export default function ContactPage() {
 
         </div>
 
-        {/* Google Maps Embed */}
-        <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl h-80 bg-[#141414]">
-          <iframe
-            title="Shop Location Map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14602.700312019483!2d90.3994523!3d23.7945821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c70c15ea1de1%3A0x8e36398629de9d96!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd"
-            width="100%"
-            height="100%"
-            style={{ border: 0, filter: 'grayscale(0.8) invert(0.9) contrast(1.2)' }}
-            allowFullScreen=""
-            loading="lazy"
-          />
+        {/* Google Maps Embed Location */}
+        <div className="space-y-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 bg-[#141414] border border-white/10 p-4 rounded-2xl">
+            <div>
+              <h4 className="text-sm font-bold text-white font-heading">মেসার্স শামীম মেশিনারিজ — গুগল ম্যাপস লোকেশন</h4>
+              <p className="text-xs text-gray-400 mt-0.5">গুগল ম্যাপে শোরুমের লাইভ লোকেশন দেখে সহজে চলে আসুন</p>
+            </div>
+            <a
+              href="https://maps.app.goo.gl/kyA95jS1Q5xJprGs7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 shadow-md shadow-[#F5A623]/20 shrink-0"
+            >
+              <MapPin size={15} />
+              <span>গুগল ম্যাপসে খুলুন</span>
+            </a>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl h-80 sm:h-96 bg-[#141414] relative">
+            <iframe
+              title="মেসার্স শামীম মেশিনারিজ - Google Maps Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.51888495066!2d89.39463197593259!3d24.726565078018324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fc53355819d235%3A0x88e132a8479a795c!2z4Kau4KeH4Ka44Ka-4Kaw4KeN4Ka4IOCmtuCmvuCmruCmv-CmriDgpq7gp4fgprbgpr_gpqjgpr7gprDgpr_gppw!5e0!3m2!1sen!2sbd!4v1712345678901!5m2!1sen!2sbd"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
 
       </div>
