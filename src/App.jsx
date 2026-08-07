@@ -20,6 +20,7 @@ import ProductsPage from './pages/ProductsPage';
 import ServicesPage from './pages/ServicesPage';
 import BrandsPage from './pages/BrandsPage';
 import ContactPage from './pages/ContactPage';
+import ReviewSubmissionPage from './pages/ReviewSubmissionPage';
 
 // Admin
 import AdminDashboard from './components/Admin/AdminDashboard';
@@ -45,16 +46,31 @@ function MainApp() {
     return path === '/admin' || path === '/admin/' || window.location.hash === '#admin';
   };
 
-  const [activeTab, setActiveTab] = useState(() => checkIsAdminPath() ? 'admin' : 'home');
+  // Check if current URL path is /review
+  const checkIsReviewPath = () => {
+    if (typeof window === 'undefined') return false;
+    const path = window.location.pathname.toLowerCase();
+    return path === '/review' || path === '/review/' || path === '/write-review' || window.location.hash === '#review';
+  };
+
+  const getInitialTab = () => {
+    if (checkIsAdminPath()) return 'admin';
+    if (checkIsReviewPath()) return 'review';
+    return 'home';
+  };
+
+  const [activeTab, setActiveTab] = useState(getInitialTab);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
   const [inquirySubject, setInquirySubject] = useState('');
 
-  // Handle URL history & popstate for /admin route
+  // Handle URL history & popstate for /admin and /review routes
   useEffect(() => {
     const handlePopState = () => {
       if (checkIsAdminPath()) {
         setActiveTab('admin');
+      } else if (checkIsReviewPath()) {
+        setActiveTab('review');
       } else {
         setActiveTab('home');
       }
@@ -74,13 +90,22 @@ function MainApp() {
       if (window.location.pathname.toLowerCase() !== '/admin') {
         window.history.pushState({}, '', '/admin');
       }
+    } else if (tabId === 'review') {
+      if (window.location.pathname.toLowerCase() !== '/review') {
+        window.history.pushState({}, '', '/review');
+      }
     } else {
-      if (window.location.pathname.toLowerCase() === '/admin') {
+      if (window.location.pathname.toLowerCase() === '/admin' || window.location.pathname.toLowerCase() === '/review') {
         window.history.pushState({}, '', '/');
       }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  // If Review Submission Page is Active
+  if (activeTab === 'review') {
+    return <ReviewSubmissionPage onBackToSite={() => handleNavigate('home')} />;
+  }
 
   // If Admin Tab is Active
   if (activeTab === 'admin') {

@@ -57,20 +57,46 @@ export default function ReviewsAdmin() {
 
   return (
     <div className="space-y-6 font-bengali">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-[#141414] border border-white/10 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-xl">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-[#141414] border border-white/10 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-xl">
         <div>
           <h2 className="text-lg sm:text-xl font-extrabold text-white font-heading">গ্রাহক রিভিউ ও টেস্টিকমোনিয়াল ব্যবস্থাপনা</h2>
-          <p className="text-xs text-gray-400 mt-1">ওয়েবসাইটে কাস্টমারদের রিভিউ, রেটিং ও মন্তব্যের টেক্সট পরিবর্তন করুন</p>
+          <p className="text-xs text-gray-400 mt-1">ওয়েবসাইটে কাস্টমারদের রিভিউ নিয়ন্ত্রণ করুন বা কাস্টমারকে সরাসরি রিভিউ দেওয়ার লিংক পাঠান</p>
         </div>
-        {!isAdding && !editingId && (
-          <button
-            onClick={handleStartAdd}
-            className="w-full sm:w-auto bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs px-5 py-3 rounded-xl sm:rounded-full flex items-center justify-center gap-2 shadow-lg shadow-[#F5A623]/20"
+        
+        <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+          {/* Send Review Link via WhatsApp */}
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(`সম্মানিত কাস্টমার, মেসার্স শামীম মেশিনারিজ থেকে সেবা নেওয়ার জন্য ধন্যবাদ! আমাদের সার্ভিস বা জেনারেটর সম্পর্কে আপনার মতামত বা রিভিউ দিতে এই লিংকে ক্লিক করুন: ${window.location.origin}/review`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-4 py-3 rounded-xl sm:rounded-full flex items-center justify-center gap-1.5 transition-all shadow-md"
           >
-            <Plus size={18} />
-            <span>নতুন রিভিউ যোগ করুন</span>
+            <MessageSquare size={16} />
+            <span>WhatsApp-এ রিভিউ লিংক পাঠান</span>
+          </a>
+
+          {/* Copy Link Button */}
+          <button
+            onClick={() => {
+              const link = `${window.location.origin}/review`;
+              navigator.clipboard.writeText(link);
+              alert(`কাস্টমার রিভিউ জমা দেওয়ার লিংক কপি হয়েছে:\n${link}`);
+            }}
+            className="flex-1 sm:flex-initial bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-4 py-3 rounded-xl sm:rounded-full flex items-center justify-center gap-1.5 border border-white/15 transition-all"
+          >
+            <span>লিংক কপি করুন (/review)</span>
           </button>
-        )}
+
+          {!isAdding && !editingId && (
+            <button
+              onClick={handleStartAdd}
+              className="w-full sm:w-auto bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs px-5 py-3 rounded-xl sm:rounded-full flex items-center justify-center gap-2 shadow-lg shadow-[#F5A623]/20"
+            >
+              <Plus size={18} />
+              <span>নতুন রিভিউ</span>
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Form Area */}
