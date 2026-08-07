@@ -17,22 +17,24 @@ export default function AdminLogin({ onBackToSite }) {
     setErrorMsg('');
     
     const result = await loginWithFirebase(email, password);
-    setLoading(false);
-    
     if (!result.success) {
-      // Fallback: try pin check if password matches pin or fallback
-      const pinSuccess = loginAdmin(password);
+      // Secure fallback: check hashed PIN match
+      const pinSuccess = await loginAdmin(password);
       if (!pinSuccess) {
         setErrorMsg(result.message || 'ইমেইল বা পাসওয়ার্ড সঠিক নয়!');
       }
     }
+    setLoading(false);
   };
 
-  const handlePinSubmit = (e) => {
+  const handlePinSubmit = async (e) => {
     e.preventDefault();
-    const pinSuccess = loginAdmin(pinInput);
+    setLoading(true);
+    setErrorMsg('');
+    const pinSuccess = await loginAdmin(pinInput);
+    setLoading(false);
     if (!pinSuccess) {
-      setErrorMsg('ভুল পাসওয়ার্ড! সঠিক পিন দিন (Default: shamim123456)');
+      setErrorMsg('ভুল পাসওয়ার্ড! আপনার সঠিক পাসওয়ার্ড দিন।');
     }
   };
 
@@ -128,7 +130,7 @@ export default function AdminLogin({ onBackToSite }) {
                   type="password"
                   required
                   autoFocus
-                  placeholder="পাসওয়ার্ড দিন (Default: shamim123456)"
+                  placeholder="পাসওয়ার্ড দিন"
                   value={pinInput}
                   onChange={(e) => {
                     setPinInput(e.target.value);

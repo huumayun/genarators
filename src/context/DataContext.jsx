@@ -92,13 +92,14 @@ export function DataProvider({ children }) {
     return saved ? JSON.parse(saved) : [];
   });
 
-  // 11. Admin Auth State
+  // 11. Admin Auth State (Secured with SHA-256 Cryptographic Hashing)
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
     return localStorage.getItem(STORAGE_KEYS.ADMIN_AUTH) === 'true';
   });
 
-  const [adminPin, setAdminPin] = useState(() => {
-    return localStorage.getItem(STORAGE_KEYS.ADMIN_PIN) || 'admin';
+  // Default SHA-256 hash of 'admin' -> '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'
+  const [adminPinHash, setAdminPinHash] = useState(() => {
+    return localStorage.getItem(STORAGE_KEYS.ADMIN_PIN) || '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
   });
 
   // Helper to Push Live Data to Firestore
@@ -384,9 +385,24 @@ export function DataProvider({ children }) {
     setInquiries([]);
   };
 
-  // Admin Auth Actions
-  const loginAdmin = (passwordInput) => {
-    if (passwordInput === adminPin || passwordInput === 'admin' || passwordInput === '123456') {
+  // SHA-256 Hash Helper via Web Crypto API
+  const hashString = async (str) => {
+    if (!str) return '';
+    try {
+      const msgUint8 = new TextEncoder().encode(str);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+    } catch (e) {
+      return '';
+    }
+  };
+
+  // Secure Admin Auth Action using SHA-256 Hashing
+  const loginAdmin = async (passwordInput) => {
+    if (!passwordInput) return false;
+    const inputHash = await hashString(passwordInput);
+    if (inputHash === adminPinHash) {
       setIsAdminLoggedIn(true);
       return true;
     }
@@ -447,8 +463,10 @@ export function DataProvider({ children }) {
     }
   };
 
-  const updateAdminPin = (newPin) => {
-    setAdminPin(newPin);
+  const updateAdminPin = async (newPin) => {
+    const hashed = await hashString(newPin);
+    setAdminPinHash(hashed);
+    localStorage.setItem(STORAGE_KEYS.ADMIN_PIN, hashed);
   };
 
   // Reset to Default Factory Data
