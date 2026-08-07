@@ -96,31 +96,61 @@ export default function AdminDashboard({ onExitAdmin }) {
             </button>
           </div>
 
-          {/* Mobile Hamburger Menu Toggle Button */}
-          <div className="flex lg:hidden items-center gap-2">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all border ${
-                mobileMenuOpen
-                  ? 'bg-rose-500/20 text-rose-300 border-rose-500/40'
-                  : 'bg-[#F5A623] text-black border-[#F5A623] shadow-md shadow-[#F5A623]/20'
-              }`}
-            >
-              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
-              <span>{mobileMenuOpen ? 'বন্ধ করুন' : 'এডমিন মেনু'}</span>
-            </button>
-          </div>
+        {/* Mobile Hamburger Menu Toggle Button */}
+        <div className="flex lg:hidden items-center gap-2">
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            className="bg-[#F5A623] text-black font-extrabold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow-md shadow-[#F5A623]/20 active:scale-95 transition-all"
+          >
+            <Menu size={18} />
+            <span>এডমিন মেনু</span>
+          </button>
         </div>
+      </div>
+    </header>
 
-        {/* Mobile Dropdown Menu Panel (Shows when mobileMenuOpen is true) */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#141414] border-b border-white/10 px-4 py-4 space-y-2 shadow-2xl animate-fadeIn max-h-[85vh] overflow-y-auto">
-            <div className="text-[11px] font-bold text-[#F5A623] uppercase tracking-wider px-2 pb-1 border-b border-white/10 flex items-center justify-between">
-              <span>এডমিন মেনু সিলেক্ট করুন</span>
-              <span className="text-gray-400 font-normal">ট্যাপ করলে মেনু হাইড হবে</span>
+      {/* Mobile Side Drawer Overlay (<lg screens) */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden flex">
+          {/* Dark Backdrop Overlay */}
+          <div 
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity animate-fadeIn"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+
+          {/* Side Sliding Drawer Panel */}
+          <aside className="relative z-10 w-[85vw] max-w-[320px] bg-[#141414] border-r border-white/15 h-full flex flex-col justify-between shadow-2xl animate-fadeIn overflow-hidden">
+            
+            {/* Drawer Top Header */}
+            <div className="p-4 border-b border-white/10 bg-[#1A1A1A] flex items-center justify-between">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-xl bg-[#F5A623] text-black font-extrabold flex items-center justify-center font-heading text-base shrink-0">
+                  S
+                </div>
+                <div className="truncate">
+                  <h2 className="text-xs font-bold text-white font-heading truncate">
+                    {companyDetails.name}
+                  </h2>
+                  <p className="text-[10px] text-[#F5A623] font-semibold">এডমিন প্যানেল</p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 text-gray-400 hover:text-white rounded-full hover:bg-white/10 transition-colors"
+                title="বন্ধ করুন"
+              >
+                <X size={20} />
+              </button>
             </div>
 
-            <div className="grid grid-cols-1 gap-1.5 pt-1">
+            {/* Drawer Middle Menu Items (Scrollable) */}
+            <div className="p-4 space-y-1.5 flex-1 overflow-y-auto">
+              <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider px-2 pb-2 flex items-center justify-between border-b border-white/5 mb-2">
+                <span>এডমিন মেনু</span>
+                <span className="text-[10px] text-[#F5A623] font-semibold">ক্লিক করলে হাইড হবে</span>
+              </div>
+
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = activeTab === item.id;
@@ -128,10 +158,10 @@ export default function AdminDashboard({ onExitAdmin }) {
                   <button
                     key={item.id}
                     onClick={() => handleSelectTab(item.id)}
-                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all ${
+                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs font-bold transition-all ${
                       isActive
-                        ? 'bg-[#F5A623] text-black font-extrabold shadow-md shadow-[#F5A623]/20'
-                        : 'bg-white/5 text-gray-200 hover:bg-white/10 hover:text-white'
+                        ? 'bg-[#F5A623] text-black font-extrabold shadow-md shadow-[#F5A623]/20 scale-[1.01]'
+                        : 'text-gray-300 hover:bg-white/5 hover:text-white'
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -160,27 +190,28 @@ export default function AdminDashboard({ onExitAdmin }) {
               })}
             </div>
 
-            {/* Mobile Footer Actions (Logout & Website Link tucked inside Menu) */}
-            <div className="pt-3 mt-3 border-t border-white/10 grid grid-cols-2 gap-2">
+            {/* Drawer Bottom Actions (Website & Logout) */}
+            <div className="p-4 border-t border-white/10 bg-[#1A1A1A] space-y-2">
               <button
                 onClick={onExitAdmin}
-                className="w-full bg-white/5 hover:bg-white/10 text-gray-200 text-xs font-semibold py-2.5 rounded-xl border border-white/10 flex items-center justify-center gap-1.5 transition-colors"
+                className="w-full bg-white/5 hover:bg-white/10 text-gray-200 text-xs font-semibold py-2.5 rounded-xl border border-white/10 flex items-center justify-center gap-2 transition-colors"
               >
-                <Globe size={14} className="text-[#F5A623]" />
+                <Globe size={15} className="text-[#F5A623]" />
                 <span>ওয়েবসাইটে যান</span>
               </button>
 
               <button
                 onClick={logoutAdmin}
-                className="w-full bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 text-xs font-bold py-2.5 rounded-xl border border-rose-500/30 flex items-center justify-center gap-1.5 transition-colors"
+                className="w-full bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 text-xs font-bold py-2.5 rounded-xl border border-rose-500/30 flex items-center justify-center gap-2 transition-colors"
               >
-                <LogOut size={14} />
-                <span>লগআউট</span>
+                <LogOut size={15} />
+                <span>লগআউট (Logout)</span>
               </button>
             </div>
-          </div>
-        )}
-      </header>
+
+          </aside>
+        </div>
+      )}
 
       {/* Main Admin Content Area */}
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
