@@ -12,6 +12,17 @@ export default function ProductGrid({ onSelectProduct, onOpenContact, onNavigate
   const [direction, setDirection] = useState(1);
   const [touchStart, setTouchStart] = useState(0);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Auto-slide every 3.5 seconds
   useEffect(() => {
     if (isPaused || N === 0) return;
@@ -35,9 +46,12 @@ export default function ProductGrid({ onSelectProduct, onOpenContact, onNavigate
     setCurrentIndex((prev) => (prev - 1 + N) % N);
   };
 
-  // Get 3 visible products seamlessly using modulo indexing
+  // Get visible products seamlessly using modulo indexing (1 product on mobile phone view)
   const getVisibleProducts = () => {
     if (N === 0) return [];
+    if (isMobile) {
+      return [products[currentIndex % N]];
+    }
     if (N <= 3) return products;
     return [
       products[currentIndex % N],
