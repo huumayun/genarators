@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut as firebaseSignOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { db, auth } from '../firebase';
@@ -102,12 +102,14 @@ export function DataProvider({ children }) {
     return localStorage.getItem(STORAGE_KEYS.ADMIN_PIN) || '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
   });
 
+  const isFirestoreInitialized = useRef(false);
+
   // Helper to Push Live Data to Firestore
   const syncToFirestore = (key, dataValue) => {
-    if (!db) return;
+    if (!db || !isFirestoreInitialized.current) return;
     try {
       const docRef = doc(db, 'website', 'liveData');
-      setDoc(docRef, { [key]: dataValue }, { merge: true }).catch((e) => {
+      setDoc(docRef, { [key]: dataValue, lastUpdated: new Date().toISOString() }, { merge: true }).catch((e) => {
         console.warn("Firestore sync write notice:", e);
       });
     } catch (err) {}
@@ -137,13 +139,13 @@ export function DataProvider({ children }) {
     }
   };
 
-  // Realtime Firestore Database Listener & Eager Initial Seed
+  // Realtime Firestore Database Listener & Seed
   useEffect(() => {
-    if (!db) return;
+    if (!db) {
+      isFirestoreInitialized.current = true;
+      return;
+    }
     try {
-      // Eager initial write so database document is created immediately
-      forceSyncAllToFirestore();
-
       const docRef = doc(db, 'website', 'liveData');
       const unsubscribe = onSnapshot(docRef, (docSnap) => {
         if (docSnap.exists()) {
@@ -158,13 +160,20 @@ export function DataProvider({ children }) {
           if (data.corporateClients) setCorporateClients(data.corporateClients);
           if (data.ownerAndTeam) setOwnerAndTeam(data.ownerAndTeam);
           if (data.inquiries) setInquiries(data.inquiries);
+        } else {
+          // First time database setup: seed initial document to Firestore
+          forceSyncAllToFirestore();
         }
+        isFirestoreInitialized.current = true;
       }, (err) => {
         console.warn("Firestore snapshot listener notice:", err);
+        isFirestoreInitialized.current = true;
       });
 
       return () => unsubscribe();
-    } catch (e) {}
+    } catch (e) {
+      isFirestoreInitialized.current = true;
+    }
   }, []);
 
   // Persistence Effects & Realtime Database Sync
