@@ -86,38 +86,47 @@
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Glassmorphism Buttons */
+/* Premium Solid Buttons — no blur */
 .btn-glass-gold {
-  background: rgba(245, 166, 35, 0.18);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(245, 166, 35, 0.5);
-  color: #FFC857;
-  box-shadow: 0 4px 20px rgba(245, 166, 35, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.25);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(135deg, #F5A623 0%, #E8950F 100%);
+  border: 1px solid rgba(255, 180, 60, 0.6);
+  color: #1A0A00;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(245, 166, 35, 0.35), 0 1px 0 rgba(255,255,255,0.15) inset;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-glass-gold:hover {
-  background: rgba(245, 166, 35, 0.32);
-  border-color: rgba(255, 198, 87, 0.9);
-  color: #FFFFFF;
-  box-shadow: 0 8px 25px rgba(245, 166, 35, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, #FFB627 0%, #F5A623 100%);
+  border-color: rgba(255, 200, 80, 0.85);
+  color: #000;
+  box-shadow: 0 6px 24px rgba(245, 166, 35, 0.5), 0 1px 0 rgba(255,255,255,0.2) inset;
+  transform: translateY(-1px);
+}
+
+.btn-glass-gold:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 8px rgba(245, 166, 35, 0.3);
 }
 
 .btn-glass-dark {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #1E1E1E;
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: #FFFFFF;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255,255,255,0.06) inset;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-glass-dark:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  background: #2A2A2A;
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(245,166,35,0.15);
+  transform: translateY(-1px);
+}
+
+.btn-glass-dark:active {
+  transform: translateY(0px);
+  background: #181818;
 }
 
 /* Background Texture Utilities */
