@@ -107,11 +107,11 @@ export function DataProvider({ children }) {
   // Helper to Push Live Data to Firestore
   const syncToFirestore = (key, dataValue) => {
     if (!db || !isFirestoreInitialized.current) return;
+    // Only write to Cloud Firestore if Admin is authenticated via Firebase Auth
+    if (!auth || !auth.currentUser) return;
     try {
       const docRef = doc(db, 'website', 'liveData');
-      setDoc(docRef, { [key]: dataValue, lastUpdated: new Date().toISOString() }, { merge: true }).catch((e) => {
-        console.warn("Firestore sync write notice:", e);
-      });
+      setDoc(docRef, { [key]: dataValue, lastUpdated: new Date().toISOString() }, { merge: true }).catch(() => {});
     } catch (err) {}
   };
 
