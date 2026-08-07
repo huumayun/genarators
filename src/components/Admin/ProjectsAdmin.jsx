@@ -44,27 +44,27 @@ export default function ProjectsAdmin() {
     <div className="space-y-6 font-bengali">
       
       {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#141414] border border-white/10 p-5 rounded-2xl">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#141414] border border-white/10 p-4 sm:p-5 rounded-2xl">
         <div>
-          <h3 className="text-xl font-bold text-white font-heading">কর্পোরেট ক্লায়েন্ট ও মেগা প্রজেক্টসমূহ</h3>
+          <h3 className="text-lg sm:text-xl font-bold text-white font-heading">কর্পোরেট ক্লায়েন্ট ও মেগা প্রজেক্টসমূহ</h3>
           <p className="text-xs text-gray-400">মোট ক্লায়েন্ট প্রজেক্ট: {corporateClients.length} টি</p>
         </div>
 
         <button
           onClick={handleOpenAdd}
-          className="bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all flex items-center justify-center gap-2 shadow-md shadow-[#F5A623]/20"
+          className="w-full sm:w-auto bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs sm:text-sm px-5 py-3 rounded-xl sm:rounded-full transition-all flex items-center justify-center gap-2 shadow-md shadow-[#F5A623]/20"
         >
-          <Plus size={16} />
+          <Plus size={18} />
           <span>নতুন ক্লায়েন্ট প্রজেক্ট যোগ করুন</span>
         </button>
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {corporateClients.map((client) => (
           <div
             key={client.id}
-            className="bg-[#141414] border border-white/10 rounded-2xl p-5 flex flex-col justify-between space-y-4 hover:border-[#F5A623]/30 transition-all shadow-lg"
+            className="bg-[#141414] border border-white/10 rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-4 hover:border-[#F5A623]/30 transition-all shadow-lg"
           >
             <div className="space-y-3">
               <div className="flex items-center justify-between">
@@ -88,9 +88,9 @@ export default function ProjectsAdmin() {
             <div className="flex items-center gap-2 pt-3 border-t border-white/10">
               <button
                 onClick={() => handleOpenEdit(client)}
-                className="flex-1 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs py-2 rounded-lg border border-white/10 flex items-center justify-center gap-1.5 transition-colors"
+                className="flex-1 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs py-2.5 rounded-xl border border-white/10 flex items-center justify-center gap-1.5 transition-colors"
               >
-                <Edit2 size={13} className="text-[#F5A623]" />
+                <Edit2 size={14} className="text-[#F5A623]" />
                 <span>এডিট</span>
               </button>
 
@@ -100,10 +100,10 @@ export default function ProjectsAdmin() {
                     deleteCorporateClient(client.id);
                   }
                 }}
-                className="bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 p-2 rounded-lg border border-rose-500/20 transition-colors"
+                className="bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 p-2.5 rounded-xl border border-rose-500/20 transition-colors"
                 title="মুছে ফেলুন"
               >
-                <Trash2 size={15} />
+                <Trash2 size={16} />
               </button>
             </div>
           </div>
@@ -112,77 +112,80 @@ export default function ProjectsAdmin() {
 
       {/* Add / Edit Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
-          <div className="relative w-full max-w-md bg-[#141414] border border-white/20 rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
-              <h3 className="text-lg font-bold text-white font-heading">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
+          <div className="relative w-full max-w-md bg-[#141414] border border-white/20 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl max-h-[92vh] flex flex-col">
+            
+            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-[#1A1A1A] shrink-0">
+              <h3 className="text-base sm:text-lg font-bold text-white font-heading">
                 {editingId ? 'প্রজেক্ট তথ্য এডিট করুন' : 'নতুন প্রজেক্ট যুক্ত করুন'}
               </h3>
-              <button onClick={() => setModalOpen(false)} className="text-gray-400 hover:text-white">
+              <button onClick={() => setModalOpen(false)} className="p-2 text-gray-400 hover:text-white rounded-full hover:bg-white/10 transition-colors">
                 <X size={20} />
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">কোম্পানি / ক্লায়েন্টের নাম *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="যেমন: স্কয়ার ফার্মাসিউটিক্যালস লিঃ"
-                  value={formData.clientName}
-                  onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
-                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#F5A623]"
-                />
+            <form onSubmit={handleSubmit} className="flex flex-col flex-1 overflow-hidden">
+              <div className="p-4 sm:p-6 overflow-y-auto space-y-4 flex-1">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-300 mb-1">কোম্পানি / ক্লায়েন্টের নাম *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="যেমন: স্কয়ার ফার্মাসিউটিক্যালস লিঃ"
+                    value={formData.clientName}
+                    onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
+                    className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-gray-300 mb-1">ইন্ডাস্ট্রি / খাত *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="যেমন: টেক্সটাইল ও গার্মেন্টস"
+                    value={formData.industry}
+                    onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
+                    className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-gray-300 mb-1">সরবরাহকৃত জেনারেটর মডেল *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="যেমন: CAT 1000 KVA সাউন্ডপ্রুফ"
+                    value={formData.generatorSupplied}
+                    onChange={(e) => setFormData({ ...formData, generatorSupplied: e.target.value })}
+                    className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-gray-300 mb-1">অবস্থান / জেলা *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="যেমন: গাজীপুর, ঢাকা"
+                    value={formData.location}
+                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                    className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                  />
+                </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">ইন্ডাস্ট্রি / খাত *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="যেমন: টেক্সটাইল ও গার্মেন্টস"
-                  value={formData.industry}
-                  onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#F5A623]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">সরবরাহকৃত জেনারেটর মডেল *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="যেমন: CAT 1000 KVA সাউন্ডপ্রুফ"
-                  value={formData.generatorSupplied}
-                  onChange={(e) => setFormData({ ...formData, generatorSupplied: e.target.value })}
-                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#F5A623]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-gray-300 mb-1">অবস্থান / জেলা *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="যেমন: গাজীপুর, ঢাকা"
-                  value={formData.location}
-                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#F5A623]"
-                />
-              </div>
-
-              <div className="pt-3 flex justify-end gap-3">
+              <div className="px-5 py-3.5 border-t border-white/10 bg-[#1A1A1A] flex items-center justify-end gap-3 shrink-0">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="bg-white/10 hover:bg-white/20 text-white font-medium text-xs px-5 py-2.5 rounded-full"
+                  className="bg-white/10 hover:bg-white/20 text-white font-medium text-xs px-5 py-2.5 rounded-full transition-colors"
                 >
                   বাতিল
                 </button>
                 <button
                   type="submit"
-                  className="bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs px-6 py-2.5 rounded-full shadow-md shadow-[#F5A623]/20"
+                  className="bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs px-6 py-2.5 rounded-full shadow-md shadow-[#F5A623]/20 transition-all"
                 >
                   {editingId ? 'সেভ করুন' : 'যুক্ত করুন'}
                 </button>

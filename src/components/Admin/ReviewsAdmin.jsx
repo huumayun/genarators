@@ -57,17 +57,17 @@ export default function ReviewsAdmin() {
 
   return (
     <div className="space-y-6 font-bengali">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-[#141414] border border-white/10 p-6 rounded-3xl shadow-xl">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-[#141414] border border-white/10 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-xl">
         <div>
-          <h2 className="text-xl font-extrabold text-white font-heading">গ্রাহক রিভিউ ও টেস্টিকমোনিয়াল ব্যবস্থাপনা</h2>
+          <h2 className="text-lg sm:text-xl font-extrabold text-white font-heading">গ্রাহক রিভিউ ও টেস্টিকমোনিয়াল ব্যবস্থাপনা</h2>
           <p className="text-xs text-gray-400 mt-1">ওয়েবসাইটে কাস্টমারদের রিভিউ, রেটিং ও মন্তব্যের টেক্সট পরিবর্তন করুন</p>
         </div>
         {!isAdding && !editingId && (
           <button
             onClick={handleStartAdd}
-            className="btn-glass-gold font-bold text-xs px-5 py-2.5 rounded-full flex items-center gap-2 shadow-lg"
+            className="w-full sm:w-auto bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs px-5 py-3 rounded-xl sm:rounded-full flex items-center justify-center gap-2 shadow-lg shadow-[#F5A623]/20"
           >
-            <Plus size={16} />
+            <Plus size={18} />
             <span>নতুন রিভিউ যোগ করুন</span>
           </button>
         )}
@@ -75,14 +75,14 @@ export default function ReviewsAdmin() {
 
       {/* Form Area */}
       {(isAdding || editingId) && (
-        <div className="bg-[#141414] border-2 border-[#F5A623]/40 p-6 sm:p-8 rounded-3xl space-y-6 shadow-2xl animate-fadeIn">
+        <div className="bg-[#141414] border-2 border-[#F5A623]/40 p-4 sm:p-8 rounded-2xl sm:rounded-3xl space-y-5 sm:space-y-6 shadow-2xl animate-fadeIn">
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <h3 className="text-lg font-bold text-white font-heading">
+            <h3 className="text-base sm:text-lg font-bold text-white font-heading">
               {isAdding ? 'নতুন রিভিউ যোগ করুন' : 'রিভিউ এডিট করুন'}
             </h3>
             <button
               onClick={() => { setIsAdding(false); setEditingId(null); }}
-              className="p-1.5 text-gray-400 hover:text-white rounded-full hover:bg-white/10 transition-colors"
+              className="p-2 text-gray-400 hover:text-white rounded-full hover:bg-white/10 transition-colors"
             >
               <X size={20} />
             </button>
@@ -98,7 +98,7 @@ export default function ReviewsAdmin() {
                   placeholder="যেমন: ইঞ্জিনিয়ার আব্দুর রহমান"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
                 />
               </div>
 
@@ -109,7 +109,7 @@ export default function ReviewsAdmin() {
                   placeholder="যেমন: প্রজেক্ট ম্যানেজার, এসিআই লিমিটেড"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
                 />
               </div>
             </div>
@@ -122,7 +122,7 @@ export default function ReviewsAdmin() {
                   placeholder="যেমন: ঢাকা"
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
                 />
               </div>
 
@@ -131,7 +131,7 @@ export default function ReviewsAdmin() {
                 <select
                   value={formData.rating}
                   onChange={(e) => setFormData({ ...formData, rating: Number(e.target.value) })}
-                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                  className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
                 >
                   <option value={5}>৫ স্টার (মাষ্টার)</option>
                   <option value={4}>৪ স্টার</option>
@@ -147,7 +147,7 @@ export default function ReviewsAdmin() {
                 placeholder="ছবি লিঙ্ক দিন..."
                 value={formData.image}
                 onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
               />
             </div>
 
@@ -159,7 +159,7 @@ export default function ReviewsAdmin() {
                 placeholder="গ্রাহকের মন্তব্য বা রিভিউ টেক্সট লিখুন..."
                 value={formData.quote}
                 onChange={(e) => setFormData({ ...formData, quote: e.target.value })}
-                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
               />
             </div>
 
@@ -167,13 +167,13 @@ export default function ReviewsAdmin() {
               <button
                 type="button"
                 onClick={() => { setIsAdding(false); setEditingId(null); }}
-                className="btn-glass-dark font-bold text-xs px-5 py-2.5 rounded-full"
+                className="bg-white/10 hover:bg-white/20 text-white font-semibold text-xs px-5 py-2.5 rounded-full transition-colors"
               >
                 বাতিল করুন
               </button>
               <button
                 type="submit"
-                className="btn-glass-gold font-bold text-xs px-7 py-2.5 rounded-full flex items-center gap-2 shadow-lg"
+                className="bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs px-7 py-2.5 rounded-full flex items-center gap-2 shadow-lg shadow-[#F5A623]/20"
               >
                 <Save size={16} />
                 <span>সেভ করুন</span>
@@ -184,23 +184,23 @@ export default function ReviewsAdmin() {
       )}
 
       {/* Testimonials List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {testimonials.map((review) => (
-          <div key={review.id} className="bg-[#141414] border border-white/10 p-6 rounded-2xl space-y-4 shadow-lg flex flex-col justify-between">
+          <div key={review.id} className="bg-[#141414] border border-white/10 p-5 sm:p-6 rounded-2xl space-y-4 shadow-lg flex flex-col justify-between hover:border-[#F5A623]/30 transition-all">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1">
                   {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} size={16} className="fill-[#F5A623] text-[#F5A623]" />
+                    <Star key={i} size={15} className="fill-[#F5A623] text-[#F5A623]" />
                   ))}
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleStartEdit(review)}
-                    className="p-2 bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white rounded-xl transition-colors"
+                    className="p-2.5 bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white rounded-xl transition-colors"
                     title="এডিট করুন"
                   >
-                    <Edit2 size={16} />
+                    <Edit2 size={16} className="text-[#F5A623]" />
                   </button>
                   <button
                     onClick={() => {
@@ -208,7 +208,7 @@ export default function ReviewsAdmin() {
                         deleteTestimonial(review.id);
                       }
                     }}
-                    className="p-2 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 rounded-xl transition-colors"
+                    className="p-2.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 rounded-xl transition-colors"
                     title="ডিলিট করুন"
                   >
                     <Trash2 size={16} />

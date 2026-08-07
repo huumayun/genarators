@@ -83,14 +83,14 @@ export default function SettingsAdmin() {
       </div>
       
       {/* Company Contact Details Editor */}
-      <div className="bg-[#141414] border border-white/10 p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl">
+      <div className="bg-[#141414] border border-white/10 p-4 sm:p-8 rounded-2xl sm:rounded-3xl space-y-5 sm:space-y-6 shadow-xl">
         <div>
-          <h3 className="text-xl font-bold text-white font-heading">শপ কন্টাক্ট ও ওয়েবসাইট সেটিংস</h3>
+          <h3 className="text-lg sm:text-xl font-bold text-white font-heading">শপ কন্টাক্ট ও ওয়েবসাইট সেটিংস</h3>
           <p className="text-xs text-gray-400">ওয়েবসাইটের ফোন নম্বর, হোয়াটসঅ্যাপ, ঠিকানা ও হেডলাইন আপডেট করুন</p>
         </div>
 
         {savedSuccess && (
-          <div className="bg-[#F5A623]/20 border border-[#F5A623] text-[#F5A623] px-5 py-3 rounded-2xl flex items-center gap-2 text-xs font-semibold">
+          <div className="bg-[#F5A623]/20 border border-[#F5A623] text-[#F5A623] px-4 py-3 rounded-2xl flex items-center gap-2 text-xs font-semibold">
             <CheckCircle2 size={16} />
             <span>ওয়েবসাইট সেটিংস ও ফোন নম্বর সফলভাবে সেভ করা হয়েছে!</span>
           </div>
@@ -105,7 +105,7 @@ export default function SettingsAdmin() {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
               />
             </div>
 
@@ -115,7 +115,7 @@ export default function SettingsAdmin() {
                 type="text"
                 value={formData.tagline}
                 onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
-                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
               />
             </div>
           </div>
@@ -128,7 +128,7 @@ export default function SettingsAdmin() {
                 required
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
               />
             </div>
 
@@ -140,7 +140,7 @@ export default function SettingsAdmin() {
                 placeholder="যেমন: 8801712345678"
                 value={formData.whatsapp}
                 onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
               />
             </div>
           </div>
@@ -152,7 +152,7 @@ export default function SettingsAdmin() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
               />
             </div>
 
@@ -162,7 +162,7 @@ export default function SettingsAdmin() {
                 type="text"
                 value={formData.hours}
                 onChange={(e) => setFormData({ ...formData, hours: e.target.value })}
-                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
               />
             </div>
           </div>
@@ -173,7 +173,7 @@ export default function SettingsAdmin() {
               type="text"
               value={formData.addressDetails}
               onChange={(e) => setFormData({ ...formData, addressDetails: e.target.value })}
-              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
             />
           </div>
 
@@ -183,35 +183,35 @@ export default function SettingsAdmin() {
               rows={3}
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
             />
           </div>
 
           <button
             type="submit"
-            className="bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs sm:text-sm px-7 py-3 rounded-full transition-all flex items-center gap-2 shadow-md shadow-[#F5A623]/20 active:scale-95"
+            className="w-full sm:w-auto bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs sm:text-sm px-7 py-3.5 rounded-xl sm:rounded-full transition-all flex items-center justify-center gap-2 shadow-md shadow-[#F5A623]/20 active:scale-95"
           >
-            <Save size={16} />
+            <Save size={18} />
             <span>সেটিংস সেভ করুন</span>
           </button>
         </form>
       </div>
 
       {/* Admin Passcode Update */}
-      <div className="bg-[#141414] border border-white/10 p-6 sm:p-8 rounded-3xl space-y-4 shadow-xl">
+      <div className="bg-[#141414] border border-white/10 p-4 sm:p-8 rounded-2xl sm:rounded-3xl space-y-4 shadow-xl">
         <div>
-          <h3 className="text-lg font-bold text-white font-heading">এডমিন পিন / পাসওয়ার্ড পরিবর্তন</h3>
+          <h3 className="text-base sm:text-lg font-bold text-white font-heading">এডমিন পিন / পাসওয়ার্ড পরিবর্তন</h3>
           <p className="text-xs text-gray-400">কন্ট্রোল প্যানেলের লগইন পিন পরিবর্তন করুন</p>
         </div>
 
         {pinSuccess && (
-          <div className="bg-[#F5A623]/20 border border-[#F5A623] text-[#F5A623] px-4 py-2 rounded-xl text-xs font-semibold">
+          <div className="bg-[#F5A623]/20 border border-[#F5A623] text-[#F5A623] px-4 py-2.5 rounded-xl text-xs font-semibold">
             এডমিন পাসওয়ার্ড পরিবর্তন সম্পন্ন হয়েছে!
           </div>
         )}
 
         {pinError && (
-          <div className="bg-rose-500/20 border border-rose-500 text-rose-400 px-4 py-2 rounded-xl text-xs font-semibold">
+          <div className="bg-rose-500/20 border border-rose-500 text-rose-400 px-4 py-2.5 rounded-xl text-xs font-semibold">
             {pinError}
           </div>
         )}
@@ -225,7 +225,7 @@ export default function SettingsAdmin() {
               placeholder="বর্তমান পিন"
               value={pinData.currentPin}
               onChange={(e) => setPinData({ ...pinData, currentPin: e.target.value })}
-              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
             />
           </div>
 
@@ -237,13 +237,13 @@ export default function SettingsAdmin() {
               placeholder="নতুন পিন"
               value={pinData.newPin}
               onChange={(e) => setPinData({ ...pinData, newPin: e.target.value })}
-              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
             />
           </div>
 
           <button
             type="submit"
-            className="bg-white/10 hover:bg-white/20 text-white font-bold text-xs py-2.5 px-6 rounded-xl border border-white/15 transition-all"
+            className="w-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs py-3 px-6 rounded-xl border border-white/15 transition-all"
           >
             পিন আপডেট করুন
           </button>
@@ -251,7 +251,7 @@ export default function SettingsAdmin() {
       </div>
 
       {/* Reset to Factory Defaults */}
-      <div className="bg-rose-500/10 border border-rose-500/20 p-6 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="bg-rose-500/10 border border-rose-500/20 p-5 sm:p-6 rounded-2xl sm:rounded-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h4 className="text-base font-bold text-rose-400 font-heading">ডিফল্ট ডাটা রিসেট</h4>
           <p className="text-xs text-gray-400">সকল কাস্টম এডিট করা ডাটা মুছে দিয়ে ওয়েবসাইটের মূল ফ্যাক্টরি ডাটায় ফিরে যান</p>
@@ -264,9 +264,9 @@ export default function SettingsAdmin() {
               alert('সকল ডাটা মূল ডাটায় রিসেট করা হয়েছে!');
             }
           }}
-          className="bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs px-5 py-2.5 rounded-full flex items-center gap-1.5 shrink-0"
+          className="w-full sm:w-auto bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs px-5 py-3 rounded-xl sm:rounded-full flex items-center justify-center gap-1.5 shrink-0 transition-colors"
         >
-          <RotateCcw size={15} />
+          <RotateCcw size={16} />
           <span>রিসেট অল ডাটা</span>
         </button>
       </div>
