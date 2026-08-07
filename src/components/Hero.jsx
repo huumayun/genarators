@@ -8,11 +8,11 @@ export default function Hero({ onNavigateProducts, onNavigateServices }) {
   return (
     <section className="relative overflow-hidden bg-[#0E0E0E] min-h-[480px] sm:min-h-[540px] flex items-center border-b border-white/10">
 
-      {/* Background Banner Image matching exact design screenshot */}
+      {/* Background Banner Image */}
       <div
         className="absolute inset-0 bg-cover bg-right lg:bg-center bg-no-repeat pointer-events-none z-0"
         style={{
-          backgroundImage: `url('/images/hero-bg-banner.png')`
+          backgroundImage: `url('/images/hero-cat.png')`
         }}
       />
 
