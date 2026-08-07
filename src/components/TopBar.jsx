@@ -26,13 +26,31 @@ export default function TopBar({ onOpenAdmin }) {
 
         {/* Right Social Icons */}
         <div className="flex items-center gap-4 text-gray-400">
-          <a href="#" className="hover:text-[#F5A623] transition-colors" aria-label="Facebook">
+          <a
+            href={companyDetails.facebook || 'https://facebook.com'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#F5A623] transition-colors"
+            aria-label="Facebook"
+          >
             <Facebook size={14} />
           </a>
-          <a href="#" className="hover:text-[#F5A623] transition-colors" aria-label="Youtube">
+          <a
+            href={companyDetails.youtube || 'https://youtube.com'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#F5A623] transition-colors"
+            aria-label="Youtube"
+          >
             <Youtube size={14} />
           </a>
-          <a href="#" className="hover:text-[#F5A623] transition-colors" aria-label="Share">
+          <a
+            href={`https://wa.me/${companyDetails.whatsapp}?text=${encodeURIComponent('হ্যালো, মেসার্স শামীম মেশিনারিজ থেকে জেনারেটর ইনকোয়ারির জন্য নক দিচ্ছি।')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#F5A623] transition-colors"
+            aria-label="WhatsApp"
+          >
             <Share2 size={14} />
           </a>
         </div>

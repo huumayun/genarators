@@ -167,6 +167,31 @@ export default function SettingsAdmin() {
             </div>
           </div>
 
+          {/* Social Links (Facebook & YouTube) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-gray-300 mb-1">ফেসবুক পেজ লিঙ্ক (Facebook Page URL)</label>
+              <input
+                type="text"
+                placeholder="যেমন: https://facebook.com/yourpage"
+                value={formData.facebook || ''}
+                onChange={(e) => setFormData({ ...formData, facebook: e.target.value })}
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-gray-300 mb-1">ইউটিউব চ্যানেল লিঙ্ক (YouTube Channel URL)</label>
+              <input
+                type="text"
+                placeholder="যেমন: https://youtube.com/@yourchannel"
+                value={formData.youtube || ''}
+                onChange={(e) => setFormData({ ...formData, youtube: e.target.value })}
+                className="w-full bg-[#0E0E0E] border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F5A623]"
+              />
+            </div>
+          </div>
+
           <div>
             <label className="block text-xs font-semibold text-gray-300 mb-1">শোরুমের সম্পূর্ণ ঠিকানা</label>
             <input

@@ -4,6 +4,8 @@ export const companyDetails = {
   phone: "01712-345678",
   whatsapp: "8801712345678",
   email: "info@shamimmachinery.com",
+  facebook: "https://facebook.com",
+  youtube: "https://youtube.com",
   location: "ঢাকা, বাংলাদেশ",
   addressDetails: "দোকান নং ১২, মেশিনারি মার্কেট, সাভার রোড, ঢাকা, বাংলাদেশ",
   hours: "প্রতিদিন: সকাল ৯.০০ - রাত ৯.০০",
