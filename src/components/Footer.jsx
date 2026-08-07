@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Mail, MapPin, Facebook, Youtube, Code2, X, Send, Copy, Check, Sparkles, BadgeCheck, ChevronRight, Layers, Star, Github, Linkedin, Twitter, Globe } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Youtube, Code2, X, Send, Copy, Check, BadgeCheck, ChevronRight, Layers, Star } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import { useData } from '../context/DataContext';
 
@@ -210,7 +210,7 @@ export default function Footer({ onNavigate }) {
 
       </div>
 
-      {/* ULTRA PREMIUM DEVELOPER CARD MODAL (Pixel-Perfect Match) */}
+      {/* ULTRA PROFESSIONAL DEVELOPER CARD MODAL (Clean, No Emojis, No Social Buttons) */}
       <AnimatePresence>
         {showDevModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-lg">
@@ -224,17 +224,9 @@ export default function Footer({ onNavigate }) {
                 boxShadow: '0 0 50px rgba(245,166,35,0.3), inset 0 0 1px rgba(255,255,255,0.2)'
               }}
             >
-              {/* Gold & Emerald Glowing Border Accents */}
-              <div className="absolute -top-20 -left-20 w-48 h-48 bg-[#F5A623]/25 rounded-full blur-3xl pointer-events-none" />
+              {/* Ambient Glows */}
+              <div className="absolute -top-20 -left-20 w-48 h-48 bg-[#F5A623]/20 rounded-full blur-3xl pointer-events-none" />
               <div className="absolute -bottom-20 -right-20 w-48 h-48 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute inset-0 border-2 border-transparent rounded-[32px] pointer-events-none"
-                   style={{
-                     background: 'linear-gradient(135deg, rgba(245,166,35,0.6) 0%, transparent 40%, transparent 60%, rgba(16,185,129,0.5) 100%) border-box',
-                     WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
-                     WebkitMaskComposite: 'xor',
-                     maskComposite: 'exclude'
-                   }}
-              />
 
               {/* Close Button */}
               <button
@@ -246,7 +238,7 @@ export default function Footer({ onNavigate }) {
 
               {/* 1. Header Row */}
               <div className="flex items-start gap-4 relative z-10">
-                {/* Gold Code Avatar Frame */}
+                {/* Code Avatar Frame */}
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#09090B] border-2 border-[#F5A623] p-1 shadow-[0_0_25px_rgba(245,166,35,0.4)] shrink-0 flex items-center justify-center">
                   <div className="w-full h-full bg-[#121214] rounded-xl flex items-center justify-center text-[#F5A623]">
                     <Code2 size={32} className="stroke-[2.5]" />
@@ -261,24 +253,23 @@ export default function Footer({ onNavigate }) {
                     <BadgeCheck size={22} className="text-[#F5A623] fill-[#F5A623]/20 shrink-0" />
                   </div>
 
-                  <p className="text-[11px] sm:text-xs font-mono font-bold text-[#F5A623] tracking-wider flex items-center gap-1.5">
-                    <span>🚀</span>
-                    <span>FULL-STACK WEB & APP DEVELOPER</span>
+                  <p className="text-[11px] sm:text-xs font-mono font-bold text-[#F5A623] tracking-wider uppercase">
+                    FULL-STACK WEB & APP DEVELOPER
                   </p>
 
-                  {/* Tech Stack Badges */}
-                  <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[10px] font-medium text-gray-300">
-                    <span className="px-2 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 flex items-center gap-1">
-                      <span>⚛️</span> React
+                  {/* Clean Tech Stack Pills */}
+                  <div className="flex flex-wrap items-center gap-1.5 pt-1 text-[10px] font-semibold text-gray-300">
+                    <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-200 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#61DAFB]" /> React
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 flex items-center gap-1">
-                      <span>🟩</span> Node.js
+                    <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-200 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#68A063]" /> Node.js
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-amber-950/60 border border-amber-500/30 text-amber-300 flex items-center gap-1">
-                      <span>🟨</span> JavaScript
+                    <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-200 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#F7DF1E]" /> JavaScript
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-300 flex items-center gap-1">
-                      <span>📘</span> TypeScript
+                    <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-200 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#3178C6]" /> TypeScript
                     </span>
                   </div>
                 </div>
@@ -329,30 +320,30 @@ export default function Footer({ onNavigate }) {
                 </div>
               </div>
 
-              {/* 4. WhatsApp Full Banner Button */}
+              {/* 4. WhatsApp Full Banner Button (Professional & Clean) */}
               <a
                 href="https://wa.me/8801768802953?text=Hello%20Humayun%20Ahmed,%20I%20saw%20your%20website%20work%20and%20want%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative z-10 w-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white font-extrabold text-sm sm:text-base py-3.5 px-5 rounded-2xl flex items-center justify-between gap-3 transition-all duration-300 shadow-xl shadow-emerald-900/40 border border-emerald-400/40 active:scale-95 group"
+                className="relative z-10 w-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white font-extrabold text-sm sm:text-base py-3.5 px-5 rounded-2xl flex items-center justify-between gap-3 transition-all duration-300 shadow-xl shadow-emerald-950/50 border border-emerald-400/30 active:scale-95 group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                    <WhatsAppIcon size={20} />
+                  <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <WhatsAppIcon size={22} />
                   </div>
                   <div className="text-left">
-                    <p className="font-extrabold leading-tight">হোয়াটসঅ্যাপে মেসেজ পাঠান</p>
-                    <p className="text-[10px] text-emerald-100/90 font-medium">দ্রুত রিপ্লাই পাবেন ⚡</p>
+                    <p className="font-extrabold text-sm sm:text-base leading-tight">হোয়াটসঅ্যাপে সরাসরি চ্যাট করুন</p>
+                    <p className="text-[11px] text-emerald-100/80 font-medium mt-0.5">তাত্ক্ষণিক উত্তর পেতে নক দিন</p>
                   </div>
                 </div>
 
-                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0 group-hover:translate-x-1 transition-transform">
+                <div className="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center shrink-0 group-hover:translate-x-1 transition-transform">
                   <ChevronRight size={18} />
                 </div>
               </a>
 
               {/* 5. Experience Stats Grid */}
-              <div className="relative z-10 grid grid-cols-3 gap-2 bg-[#121318]/90 border border-white/10 p-3 sm:p-4 rounded-2xl text-center">
+              <div className="relative z-10 grid grid-cols-3 gap-2 bg-[#121318]/90 border border-white/10 p-3.5 sm:p-4 rounded-2xl text-center">
                 <div className="space-y-0.5 border-r border-white/10 pr-2">
                   <p className="text-sm sm:text-base font-extrabold text-[#F5A623] flex items-center justify-center gap-1">
                     <Code2 size={14} />
@@ -382,44 +373,6 @@ export default function Footer({ onNavigate }) {
                     Projects Done
                   </p>
                 </div>
-              </div>
-
-              {/* 6. Social Links Row */}
-              <div className="relative z-10 flex items-center justify-center gap-3 pt-1">
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
-                  aria-label="GitHub"
-                >
-                  <Github size={16} />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin size={16} />
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
-                  aria-label="Twitter"
-                >
-                  <Twitter size={16} />
-                </a>
-                <a
-                  href="mailto:huumayunahmed@gmail.com"
-                  className="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
-                  aria-label="Portfolio"
-                >
-                  <Globe size={16} />
-                </a>
               </div>
 
             </motion.div>
