@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Mail, MapPin, Facebook, Youtube, Code2, X, Send, Copy, Check } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Youtube, Code2, X, Send, Copy, Check, Sparkles } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import { useData } from '../context/DataContext';
 
@@ -111,7 +111,7 @@ export default function Footer({ onNavigate }) {
             <ul className="space-y-2 text-xs font-semibold">
               <li>
                 <button onClick={() => onNavigate('products')} className="hover:underline text-black/85">
-                  پاکستان জেনারেটর
+                  পাকিস্তান জেনারেটর
                 </button>
               </li>
               <li>
@@ -190,81 +190,91 @@ export default function Footer({ onNavigate }) {
             © {new Date().getFullYear()} {companyDetails.name}। সর্বস্বত্ব সংরক্ষিত।
           </div>
 
-          {/* Developer Contact Marketing Link */}
-          <div className="flex items-center gap-3 bg-black/10 px-3.5 py-1.5 rounded-full border border-black/15">
+          {/* Developer Contact Link */}
+          <div className="flex items-center gap-2 bg-black/10 px-3.5 py-1 rounded-full border border-black/15">
             <Code2 size={13} className="text-black" />
             <span>ডেভেলপড বাই:</span>
             <button
               onClick={() => setShowDevModal(true)}
-              className="font-extrabold text-black hover:text-white transition-colors underline flex items-center gap-1"
+              className="font-extrabold text-black hover:text-white transition-colors underline"
             >
-              <span>Humayun Ahmed</span>
+              Humayun Ahmed
             </button>
           </div>
         </div>
 
       </div>
 
-      {/* Developer Contact Modal */}
+      {/* Ultra Premium Glassmorphism Developer Contact Modal */}
       <AnimatePresence>
         {showDevModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 15 }}
+              initial={{ opacity: 0, scale: 0.88, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 15 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-[#141414] text-white border border-[#F5A623]/50 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative space-y-5"
+              exit={{ opacity: 0, scale: 0.88, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full max-w-md bg-gradient-to-b from-[#1E1E1E]/90 to-[#0A0A0A]/95 text-white border border-white/20 rounded-3xl p-6 sm:p-8 shadow-[0_0_50px_rgba(245,166,35,0.3)] backdrop-blur-2xl space-y-6 overflow-hidden smooth-gpu"
             >
+              {/* Background Ambient Glow */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#F5A623]/15 rounded-full blur-3xl -z-0 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -z-0 pointer-events-none" />
+
               {/* Close Button */}
               <button
                 onClick={() => setShowDevModal(false)}
-                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white/80 hover:text-white flex items-center justify-center transition-colors z-20 backdrop-blur-md"
               >
-                <X size={18} />
+                <X size={16} />
               </button>
 
-              {/* Header Badge */}
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#F5A623]/15 border border-[#F5A623]/40 text-[#F5A623] flex items-center justify-center font-bold text-lg">
-                  <Code2 size={24} />
+              {/* Developer Header */}
+              <div className="flex items-center gap-3.5 relative z-10">
+                <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-[#F5A623] to-[#E8950F] p-0.5 shadow-lg shadow-[#F5A623]/30">
+                  <div className="w-full h-full bg-[#141414] rounded-[14px] flex items-center justify-center text-[#F5A623]">
+                    <Code2 size={24} />
+                  </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-extrabold font-heading text-white">
+                  <h3 className="text-lg font-extrabold font-heading text-white tracking-wide">
                     Humayun Ahmed
                   </h3>
-                  <p className="text-xs text-[#F5A623] font-semibold">
-                    Full-Stack Web & App Developer
+                  <p className="text-xs text-[#F5A623] font-semibold flex items-center gap-1.5 mt-0.5">
+                    <Sparkles size={12} />
+                    <span>Full-Stack Web & App Developer</span>
                   </p>
                 </div>
               </div>
 
-              {/* Tagline */}
-              <p className="text-xs text-gray-300 leading-relaxed bg-[#0E0E0E] p-3.5 rounded-xl border border-white/10">
-                আপনার ব্যবসাকে ডিজিটাল করতে রেসপন্সিভ ওয়েবসাইট, ওয়েব অ্যাপ বা সফটওয়্যার ডেভলপমেন্ট সেবার জন্য যোগাযোগ করুন।
-              </p>
+              {/* Intro Banner Box */}
+              <div className="relative z-10 bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-2xl space-y-1">
+                <p className="text-xs text-gray-200 leading-relaxed font-medium">
+                  আপনার ব্যবসার জন্য আধুনিক রেসপন্সিভ ওয়েবসাইট, ওয়েব অ্যাপ বা যেকোনো সফটওয়্যার ডেভলপমেন্ট সেবার জন্য সরাসরি যোগাযোগ করুন।
+                </p>
+              </div>
 
-              {/* Contact Buttons */}
-              <div className="space-y-3 pt-1">
-                {/* Email Action */}
-                <div className="bg-[#0E0E0E] p-3 rounded-xl border border-white/10 flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2.5 min-w-0">
+              {/* Contact Actions */}
+              <div className="space-y-3 relative z-10 pt-1">
+                {/* Email Box */}
+                <div className="bg-white/5 backdrop-blur-md border border-white/10 p-3 rounded-2xl flex items-center justify-between gap-2 shadow-inner">
+                  <div className="flex items-center gap-2.5 min-w-0 pl-1">
                     <Mail size={16} className="text-[#F5A623] shrink-0" />
-                    <span className="text-xs font-semibold text-gray-200 truncate">
+                    <span className="text-xs font-semibold text-gray-100 truncate select-all">
                       huumayunahmed@gmail.com
                     </span>
                   </div>
-                  <div className="flex items-center gap-1 shrink-0">
+
+                  <div className="flex items-center gap-1.5 shrink-0">
                     <button
                       onClick={handleCopyEmail}
-                      className="p-1.5 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-medium text-gray-300 transition-colors flex items-center gap-1"
+                      className="p-2 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-medium text-gray-200 transition-colors flex items-center justify-center border border-white/10"
                       title="কপি করুন"
                     >
                       {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
                     </button>
                     <a
                       href="mailto:huumayunahmed@gmail.com"
-                      className="px-2.5 py-1 bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs rounded-lg transition-colors flex items-center gap-1"
+                      className="px-3 py-1.5 bg-[#F5A623] hover:bg-[#FFB627] text-black font-extrabold text-xs rounded-xl transition-all flex items-center gap-1.5 shadow-md shadow-[#F5A623]/25 active:scale-95"
                     >
                       <span>ইমেইল</span>
                       <Send size={12} />
@@ -272,23 +282,25 @@ export default function Footer({ onNavigate }) {
                   </div>
                 </div>
 
-                {/* WhatsApp Action */}
+                {/* WhatsApp Button (Phone number hidden in label as requested) */}
                 <a
                   href="https://wa.me/8801768802953?text=Hello%20Humayun%20Ahmed,%20I%20saw%20your%20website%20work%20and%20want%20to%20discuss%20a%20project."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md"
+                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm py-3.5 rounded-2xl flex items-center justify-center gap-2.5 transition-all duration-200 shadow-xl shadow-emerald-600/30 border border-emerald-400/30 active:scale-95 group"
                 >
-                  <WhatsAppIcon size={18} />
-                  <span>হোয়াটসঅ্যাপে মেসেজ পাঠান (01768802953)</span>
+                  <div className="group-hover:scale-110 transition-transform">
+                    <WhatsAppIcon size={20} />
+                  </div>
+                  <span>হোয়াটসঅ্যাপে মেসেজ পাঠান</span>
                 </a>
               </div>
 
-              {/* Close Footer Note */}
-              <div className="text-center pt-2">
+              {/* Close Footer Link */}
+              <div className="text-center pt-1 relative z-10">
                 <button
                   onClick={() => setShowDevModal(false)}
-                  className="text-xs text-gray-400 hover:text-white underline font-medium"
+                  className="text-xs text-gray-400 hover:text-white transition-colors underline font-medium"
                 >
                   বন্ধ করুন
                 </button>
