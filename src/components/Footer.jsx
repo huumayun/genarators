@@ -161,7 +161,7 @@ export default function Footer({ onNavigate }) {
             </ul>
           </div>
 
-          {/* Column 5: Contact Info */}
+          {/* Column 5: Contact Info & Developer Link */}
           <div className="space-y-3">
             <h4 className="text-sm font-extrabold text-black font-heading uppercase tracking-wider">
               যোগাযোগ
@@ -179,27 +179,32 @@ export default function Footer({ onNavigate }) {
                 <MapPin size={14} className="text-black shrink-0 mt-0.5" />
                 <span>{companyDetails.location}</span>
               </li>
+
+              {/* Developer Contact Link under Column 5 */}
+              <li className="pt-2 border-t border-black/15">
+                <button
+                  onClick={() => setShowDevModal(true)}
+                  className="inline-flex items-center gap-1.5 text-xs font-extrabold text-black bg-black/10 hover:bg-black hover:text-[#F5A623] px-3 py-1.5 rounded-lg border border-black/20 transition-all shadow-sm group"
+                >
+                  <Code2 size={13} className="group-hover:scale-110 transition-transform" />
+                  <span>Developer Contact</span>
+                </button>
+              </li>
             </ul>
           </div>
 
         </div>
 
-        {/* Bottom Copyright & Developer Strip */}
+        {/* Bottom Copyright Strip */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-semibold text-black/80">
           <div>
             © {new Date().getFullYear()} {companyDetails.name}। সর্বস্বত্ব সংরক্ষিত।
           </div>
 
-          {/* Developer Contact Link */}
-          <div className="flex items-center gap-2 bg-black/10 px-3.5 py-1 rounded-full border border-black/15">
-            <Code2 size={13} className="text-black" />
-            <span>ডেভেলপড বাই:</span>
-            <button
-              onClick={() => setShowDevModal(true)}
-              className="font-extrabold text-black hover:text-white transition-colors underline"
-            >
-              Humayun Ahmed
-            </button>
+          <div className="flex items-center gap-4">
+            <a href="#" className="hover:underline">গোপনীয়তা নীতি</a>
+            <span>|</span>
+            <a href="#" className="hover:underline">শর্তাবলী</a>
           </div>
         </div>
 
@@ -282,7 +287,7 @@ export default function Footer({ onNavigate }) {
                   </div>
                 </div>
 
-                {/* WhatsApp Button (Phone number hidden in label as requested) */}
+                {/* WhatsApp Button */}
                 <a
                   href="https://wa.me/8801768802953?text=Hello%20Humayun%20Ahmed,%20I%20saw%20your%20website%20work%20and%20want%20to%20discuss%20a%20project."
                   target="_blank"
