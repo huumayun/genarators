@@ -1,5 +1,6 @@
 import React from 'react';
-import { Phone, MapPin, Facebook, Youtube, Share2, ShieldCheck } from 'lucide-react';
+import { Phone, MapPin, Facebook, Youtube, ShieldCheck } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 import { useData } from '../context/DataContext';
 
 export default function TopBar({ onOpenAdmin }) {
@@ -51,7 +52,7 @@ export default function TopBar({ onOpenAdmin }) {
             className="hover:text-[#F5A623] transition-colors"
             aria-label="WhatsApp"
           >
-            <Share2 size={14} />
+            <WhatsAppIcon size={14} />
           </a>
         </div>
       </div>

@@ -15,19 +15,38 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase App, Firestore Database & Authentication
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-
-// Initialize Analytics safely
+let app = null;
+let db = null;
+let auth = null;
 let analytics = null;
-if (typeof window !== 'undefined') {
-  isSupported().then((supported) => {
-    if (supported) {
-      analytics = getAnalytics(app);
+
+// Only initialize Firebase if a valid non-placeholder API key is present in .env
+const isValidApiKey = Boolean(
+  firebaseConfig.apiKey &&
+  typeof firebaseConfig.apiKey === 'string' &&
+  firebaseConfig.apiKey.trim().length > 10 &&
+  !firebaseConfig.apiKey.includes('YOUR_') &&
+  !firebaseConfig.apiKey.includes('dummy')
+);
+
+if (isValidApiKey) {
+  try {
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    auth = getAuth(app);
+
+    if (typeof window !== 'undefined') {
+      isSupported().then((supported) => {
+        if (supported && app) {
+          analytics = getAnalytics(app);
+        }
+      }).catch(() => {});
     }
-  }).catch(() => {});
+  } catch (error) {
+    console.warn("Firebase Notice: Key pending setup in .env:", error.message);
+  }
+} else {
+  console.info("Firebase Notice: Add your real VITE_FIREBASE_API_KEY to .env file to enable Firebase auth & Cloud Firestore.");
 }
 
 export { app, db, auth, analytics };

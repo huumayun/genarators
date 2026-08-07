@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Plus, Edit2, Trash2, Save, X, Star, MessageSquare } from 'lucide-react';
+import { Plus, Edit2, Trash2, Save, X, Star } from 'lucide-react';
+import WhatsAppIcon from '../WhatsAppIcon';
 import { useData } from '../../context/DataContext';
 
 export default function ReviewsAdmin() {
@@ -71,7 +72,7 @@ export default function ReviewsAdmin() {
             rel="noopener noreferrer"
             className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-4 py-3 rounded-xl sm:rounded-full flex items-center justify-center gap-1.5 transition-all shadow-md"
           >
-            <MessageSquare size={16} />
+            <WhatsAppIcon size={16} />
             <span>WhatsApp-এ রিভিউ লিংক পাঠান</span>
           </a>
 

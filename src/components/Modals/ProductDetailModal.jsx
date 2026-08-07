@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Check, Phone, MessageSquare } from 'lucide-react';
+import { X, Check, Phone } from 'lucide-react';
+import WhatsAppIcon from '../WhatsAppIcon';
 import { companyDetails } from '../../data/mockData';
 
 export default function ProductDetailModal({ product, onClose, onOrderInquiry }) {
@@ -109,9 +110,9 @@ export default function ProductDetailModal({ product, onClose, onOrderInquiry })
             href={`https://wa.me/${companyDetails.whatsapp}?text=${encodeURIComponent(`হ্যালো, আমি ${product.title} সম্পর্কে বিস্তারিত জানতে চাই।`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm py-3 px-5 rounded-full transition-all flex items-center justify-center gap-2"
+            className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm py-3 px-5 rounded-full transition-all flex items-center justify-center gap-2 shadow-md"
           >
-            <MessageSquare size={16} />
+            <WhatsAppIcon size={18} />
             <span>হোয়াটসঅ্যাপ ইনকোয়ারি</span>
           </a>
 

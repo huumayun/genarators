@@ -1,5 +1,6 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Facebook, Youtube, Share2 } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Youtube } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 import { useData } from '../context/DataContext';
 
 export default function Footer({ onNavigate }) {
@@ -50,10 +51,10 @@ export default function Footer({ onNavigate }) {
                 href={`https://wa.me/${companyDetails.whatsapp}?text=${encodeURIComponent('হ্যালো, মেসার্স শামীম মেশিনারিজ থেকে জেনারেটর ইনকোয়ারির জন্য নক দিচ্ছি।')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-black/90 text-[#F5A623] flex items-center justify-center hover:bg-black transition-colors"
+                className="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-500 transition-colors shadow-md"
                 aria-label="WhatsApp"
               >
-                <Share2 size={16} />
+                <WhatsAppIcon size={16} />
               </a>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
+import WhatsAppIcon from '../components/WhatsAppIcon';
 import { useData } from '../context/DataContext';
 
 export default function ContactPage() {
@@ -65,16 +66,18 @@ export default function ContactPage() {
               href={`https://wa.me/${companyDetails.whatsapp}?text=${encodeURIComponent('হ্যালো মেসার্স শামীম মেশিনারিজ, আমি জেনারেটর সম্পর্কে তথ্য জানতে চাই।')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white p-5 rounded-2xl flex items-center justify-between transition-all shadow-lg"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white p-5 rounded-2xl flex items-center justify-between transition-all shadow-lg group"
             >
-              <div className="flex items-center gap-3">
-                <MessageSquare size={24} />
+              <div className="flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
+                  <WhatsAppIcon size={24} />
+                </div>
                 <div>
-                  <h4 className="text-sm font-bold">হোয়াটসঅ্যাপে চ্যাট করুন</h4>
+                  <h4 className="text-sm font-bold font-heading">হোয়াটসঅ্যাপে চ্যাট করুন</h4>
                   <p className="text-xs text-emerald-100">ইনস্ট্যান্ট তথ্য ও ছবি পেতে মেসেজ পাঠান</p>
                 </div>
               </div>
-              <span className="bg-white/20 px-3 py-1 rounded-full text-xs font-semibold">Open Chat</span>
+              <span className="bg-white/20 px-3.5 py-1.5 rounded-full text-xs font-bold shrink-0">Open Chat</span>
             </a>
 
             {/* Email Card */}

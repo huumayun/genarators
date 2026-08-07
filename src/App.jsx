@@ -33,8 +33,7 @@ import InquiryModal from './components/Modals/InquiryModal';
 // Context
 import { DataProvider, useData } from './context/DataContext';
 
-// Floating Actions
-import { Phone, MessageSquare } from 'lucide-react';
+import WhatsAppIcon from './components/WhatsAppIcon';
 
 function MainApp() {
   const { companyDetails, isAdminLoggedIn } = useData();
@@ -225,10 +224,10 @@ function MainApp() {
           href={`https://wa.me/${companyDetails.whatsapp}?text=${encodeURIComponent('হ্যালো, মেসার্স শামীম মেশিনারিজ থেকে জেনারেটর সংক্রান্ত ইনকোয়ারির জন্য নক দিচ্ছি।')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-13 h-13 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-200 group relative"
+          className="fixed bottom-20 sm:bottom-6 right-6 z-50 w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 hover:scale-110 active:scale-95 transition-all smooth-gpu"
           aria-label="WhatsApp Us"
         >
-          <MessageSquare size={24} />
+          <WhatsAppIcon size={28} />
           <span className="absolute right-14 bg-black/90 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             হোয়াটসঅ্যাপ করুন
           </span>
