@@ -25,37 +25,32 @@ export default function BrandsPage({ onNavigateProducts }) {
           </p>
         </div>
 
-        {/* Brands Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Brands Compact Payment-Style Logo Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
           {brands.map((brand, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.92, y: 15 }}
+              initial={{ opacity: 0, scale: 0.9, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ scale: 1.025, transition: { duration: 0.2 } }}
-              className="bg-[#141414] border border-white/10 p-6 rounded-2xl space-y-4 hover:border-[#F5A623]/40 transition-colors shadow-xl group smooth-gpu"
+              transition={{ duration: 0.35, delay: index * 0.04, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.04, transition: { duration: 0.2 } }}
+              onClick={onNavigateProducts}
+              className="bg-[#141414] hover:bg-[#1A1A1A] border border-white/10 hover:border-[#F5A623]/60 p-3 sm:p-4 rounded-2xl flex items-center gap-3 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#F5A623]/10 cursor-pointer group smooth-gpu"
             >
-              <div className="w-16 h-16 rounded-2xl bg-[#0E0E0E] border border-white/10 flex items-center justify-center font-extrabold text-[#F5A623] text-xl font-heading shadow-inner group-hover:scale-105 transition-transform">
-                {brand.logo}
+              {/* Brand Logo Box / Badge */}
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#F5A623] font-black text-xs sm:text-sm font-heading group-hover:scale-105 group-hover:bg-[#F5A623] group-hover:text-black transition-all shrink-0 shadow-inner">
+                {brand.logo || brand.name.slice(0, 3).toUpperCase()}
               </div>
 
-              <div>
-                <h3 className="text-xl font-bold text-white font-heading group-hover:text-[#F5A623] transition-colors">
+              {/* Brand Text & Origin Tag */}
+              <div className="min-w-0 flex-1">
+                <h3 className="text-xs sm:text-sm font-bold text-white font-heading group-hover:text-[#F5A623] transition-colors truncate">
                   {brand.name}
                 </h3>
-                <p className="text-gray-400 text-xs mt-1 leading-relaxed">
-                  {brand.desc}
+                <p className="text-[10px] text-gray-400 truncate mt-0.5 font-medium">
+                  {brand.desc || 'অরিজিনাল ব্র্যান্ড'}
                 </p>
               </div>
-
-              <button
-                onClick={onNavigateProducts}
-                className="inline-flex items-center gap-1.5 text-xs text-[#F5A623] font-semibold hover:underline pt-2"
-              >
-                <span>এই ব্র্যান্ডের মডেলসমূহ দেখুন</span>
-                <ArrowRight size={14} />
-              </button>
             </motion.div>
           ))}
         </div>
